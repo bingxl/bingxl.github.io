@@ -19,7 +19,7 @@ indexOf,lastIndexOf,
 push, pop, shift, unshift,    
 sort, reverse    
 map, reduce, reduceRight, filter, every, some, forEach
-
+<!-- more -->
 # 创建数组
 + 数组字面量创建：`var arr = [val1, val2, val3];`
 + 数组构造函数：
