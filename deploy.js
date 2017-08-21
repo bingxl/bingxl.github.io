@@ -57,8 +57,8 @@ function exec (com){
  * 将数据打印到控制台
  * @param {*} str 打印数据
  */
-function log(str) {
-    console.log(str);
+function log() {
+    console.log.apply(null, arguments);
 }
 // log(process);
 event.on('exec', function(delayNnm = 0) {
