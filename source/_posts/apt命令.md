@@ -13,7 +13,7 @@ tags:
 
 　　apt-get命令一般需要root权限执行，所以一般跟着sudo命令。与/etc/apt/sources.list中匹配。
 ## apt常用命令集合
-
+<!-- more -->
 + apt-cache search packagename 搜索包
 + apt-cache show packagename 获取包的相关信息，如说明、大小、版本等
 + apt-get install packagename 安装包
@@ -32,3 +32,14 @@ tags:
 + apt-cache rdepends packagename 是查看该包被哪些包依赖
 + apt-get build-dep packagename 安装相关的编译环境
 + apt-get source packagename 下载该包的源代码
+
+## 源的修改
+apt的源在 /etc/apt/sources.list 文件里面
+
+```
+deb http://cn.archive.ubuntu.com/ubuntu trusty main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse
+deb http://cn.archive.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+```
+每次修改时不仅需要修改路径名  http://cn......./ubuntu  还需要注意后面的是trusty还是其他什么 (前几天安装g++时就吃亏了，使用代码中的源时后面没改为trusty就一直装不上)
