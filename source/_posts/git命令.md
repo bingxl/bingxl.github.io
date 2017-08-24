@@ -4,7 +4,8 @@ title: git命令
 date: 2017-08-23 22:41:19
 tags:
 ---
-<!-- 测试使用 add .是否会提交文件 -->
+测试使用 add .是否会提交文件
+
 ## git里的对象
 共有四种对象，分别是blob、tree、commit、tag。每个对象包含了类型、大小和内容
 ### blob
@@ -15,7 +16,7 @@ blob | size |
 文件内容
 
 查看blob对象里的内容： git show <SHA1>  sha1是文件经过sha1处理过的标识符
-
+<!-- more -->
 ### tree
 tree类似一个目录，管理一些tree和blob对象
 
