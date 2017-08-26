@@ -67,7 +67,13 @@ toLowerCase 把字符串转换为小写，toUpperCase将字符串转换为大写
 
 ## indexOf, lastIndexOf
 indexOf(str, index?) str为索引的字符，index为开始的位置默认为0；
-lastIndexOf(str, index?) 和indexOf一样，只是从后向前开始查找
+lastIndexOf(str, index?) 和indexOf一样，只是从index位置开始向前开始查找
+```
+'test'.indexOf('t') // 0
+'test'.indexOf('t', 2) // 3
+'test'.lastIndexOf('t') // 3
+'test'.lastIndexOf('t', 2) // 0
+```
 
 ## search， match， replace
 search(regexp) 返回字符串中第一个与regexp相匹配的子字符串的起始位置，为匹配则返回-1；match(regexp) 将regexp与字符串匹配，若未设置 全局匹配标志则返回第一次匹配的相关信息，若设置了全局匹配标志则返回所有匹配的子字符串；replace(str or regexp, 'replacestring'),将字符串中第一个str字符替换，或将匹配正则的字符替换，正则表达式中若设置全局标志则把所有匹配的字符全部替换，若未设置则只替换第一个匹配的字符，替换的目标字符中可以使用$符号进行完全匹配或捕获分组

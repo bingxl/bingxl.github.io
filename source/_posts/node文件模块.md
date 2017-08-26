@@ -226,4 +226,6 @@ fs.unwatchFile(filname, [listener]),当文件发生更改时取消某个处理�
 
 
 fs.watch(file, [options],listener(event, file));event为 rename(重命名，移动，删除)或change(修改)；watch函数返回一个fs.FSWatcher对象，使用此对象的close方法关闭watch监视
+
+
 ## 文件流
