@@ -38,5 +38,6 @@ $ hexo clean
 $ hexo list <type> //type is post/page/toute/tag/category
 
 
-
+## 添加travis-ci
+在项目里添加了travis-ci, hexo博客的生成，压缩，部署都在travis里面进行，源码只负责写和修改文章，然后提交到github上
 
