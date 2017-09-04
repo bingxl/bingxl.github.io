@@ -41,7 +41,7 @@ $ hexo list <type> //type is post/page/toute/tag/category
 ## 添加travis-ci
 在项目里添加了travis-ci, hexo博客的生成，压缩，部署都在travis里面进行，源码只负责写和修改文章，然后提交到github上
 
-百度推送：
-
+## 百度推送
+生成urls.txt  node .\urlsGenerate.js
 主动推送：
 curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
