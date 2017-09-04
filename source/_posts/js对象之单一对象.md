@@ -19,7 +19,7 @@ let keyName = 'test';
 obj['test'] =+ obj.test == obj[keyName] 
 ```
 使用点操作符比较方便顺手，使用中括号可以通过计算变量后再得到属性；
-
+<!-- more -->
 设置和删除也比较简单，设置值时直接赋值，删除时使用delete操作
 ```
 obj.test = 'test';
