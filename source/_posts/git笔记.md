@@ -23,7 +23,7 @@ git reset --hard HEAD^ #回退到上一个版本
 	commit id(版本号) 可回到指定版本
 git reflog #查看历史命令
 ```
-
+<!-- more -->
 2. 工作区（Working Directory）
 3. 版本库（Repository） 
 ```
