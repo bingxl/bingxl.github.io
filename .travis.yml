@@ -10,9 +10,9 @@ before_script:
   - npm install -g gulp
 
 script:
+  - node urlsGenerate.js
   - hexo generate
   - gulp
-  - node urlsGenerate.js
   - curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
 
 after_script:
