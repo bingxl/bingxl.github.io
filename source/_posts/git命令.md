@@ -105,3 +105,10 @@ git config --global user.email "yourEmail"
 
 ### 标签管理
 @TODO
+标签是和某次提交绑定到一起的
+- `git tag <tagname> [commitId]` 创建一个标签，默认指向当前HEAD
+- `git tag -a <tagname> -m 'blabla' [commitId]`创建一个标签和说明
+- `git push origin <tagname>` 推送本地标签到远程
+- `git push origin --tags` 推送所有未推送过的本地标签到远程
+- `git tag -d <tagname>` 删除一个本地标签
+- `git push originn :refs/tags/<tagname>`删除一个远程标签
