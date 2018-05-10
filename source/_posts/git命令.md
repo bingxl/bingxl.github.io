@@ -58,3 +58,50 @@ object为对象名， type为标签类型，tagger为创建标签的人
 git config --global user.name "yourname"
 git config --global user.email "yourEmail"
 ```
+
+## 常用命令参考
+### 创建版本库
+- `git init` 初始化仓库
+- `git add [file]` 将文件添加到暂存区
+- `git commit -m 'commit说明'` 提交暂存区的对象到仓库里
+- `git status ` 查看当前仓库状态
+- `git diff[file]` 查看文件再仓库和工作去的区别
+### 时光穿梭
+- `git reset --hard HEAD^/[commit id]` 回退到之前版本，HEAD^^ 为上两个版本，
+- `git reflog `查看执行过的提交命令
+- `git log`查看提交历史
+- `git checkout --[file]` 将仓库里的文件切换出来（工作区的修改会被丢弃）
+- `git reset HEAD [file]` 和上一条命令功能相同
+- `git rm [file]` 之后commit达到删除文件功能
+
+### 远程仓库
+- `git remote` 查看远程仓库
+- `git remote -v` 查看远程仓库信息
+- `git remote add origin git@github.com:userName/repo-name.git` 添加远程仓库
+- `git push -u origin master`第一次推送master分支的所有内容
+
+### 分支管理
+- `git branch` 查看分支
+- `git branch <name>` 创建分支
+- `git checkout <name>` 切换分支
+- `git checkout -b <name>`创建并切换分支
+- `git merge <name>` 合并某分支到当前分支
+- `git branch -d <name>` 删除分支
+- `git branch -D <name>` 强行删除未合并过的分支
+- `git log --graph` 查看分支合并图
+- `git merge --no-ff -m '提交说明' <branchName>` 禁止使用fast forward模式合并，会创建一个提交
+
+
+- `git stash` 把当前工作现场存储起来，等以后恢复现场后自动工作
+- `git stash list `查看存储的工作现场
+- `git stash apply` 恢复现场，恢复后不会删除stash
+- `git stash drop` 删除stash
+- `git stash pop` 恢复并删除stash
+
+- `git push origin branchName`推送本地分支
+- `git pull` 抓取远程分支到工作区，而fetch只是抓取到本地仓库中
+- `git checkout -b branchName origin/branchName`创建本地分支并和远程分支关联
+- `git branch --set-upstream branch-name origin/branch-name` 建立本地分支和远程分支的关联
+
+### 标签管理
+@TODO
