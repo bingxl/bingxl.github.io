@@ -12,7 +12,7 @@
 + CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载[CMake installer](https://cmake.org/download);
 + 编译工具。 在linux下安装[GCC](https://askubuntu.com/questions/154402/install-gcc-on-ubuntu-12-04-lts)，在OSX下安装[Xcode](https://itunes.apple.com/us/app/xcode/id497799835)。在Windows下安装 [Visual Studio 2015 Community with Update 3](://www.visualstudio.com/downloads/) 或更新的版本;
 + Python2.7.x。在Linux和OSX下大部分都内置了Python2.7版本，没有的需要安装，Windows下需要自动下载安装；
-
+<!-- more -->
 安装完后，确保git,cmake,python可访问（否则手动添加环境变量）；从技术上讲,如果使用提前编译好的工具链，那么CMake和编译工具不是必须的，只是开发选项可能受到一点限制。
 
 ## 下载或编译工具链
