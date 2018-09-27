@@ -3,7 +3,7 @@
 @author bingxl
 @emaill scarecrowlxb@qq.com 
  -->
-# 开发者指导
+# webAssembly 开发者指导
 本页面提供一步一步的操作将一个简单的程序编译成webassembly
 
 ## 前提要求
