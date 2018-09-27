@@ -7,6 +7,10 @@ gulp
 
 hexo deploy
 
+## table of content
++ [hexo相关操作](#hexo相关操作)
++ [添加travis-ci](#添加travis-ci)
++ [百度推送](#百度推送)
 
 ## hexo相关操作
 添加新文章：`hexo new 'articleName'`  //运行后文章在source下的 _posts文件夹下
