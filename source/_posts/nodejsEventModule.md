@@ -21,7 +21,7 @@ let event = require('events');  // 引入events模块
 let emit = new event.EventEmitter();  // 实例化一个events对象
 
 '''
-
+<!-- more -->
 ## 注册监听事件
 接着使用事件对象的addListener, on ,once 方法添加事件监听函数. on 是 addListener 的别名. 第二个参数的 this 对象指向emit, 当是箭头函数时this被绑定.
 

@@ -77,3 +77,17 @@ application/x-7z-compressed        7z;
 ....................
 ```
 使用 `curl -I url`查看服务器响应的头部信息。
+
+
+## c/c++ 中 export 函数
+c/c++ 中默认运行 main 函数, 其余函数会被忽略, 素以需要做一些处理, 使用 emscript 提供的 EMSCRIPTEN_KEEP_ALIVE 修饰 如下
+```
+#include <emscripten/emscripten.h>
+
+int EMSCRIPTEN_KEEPALIVE myname() {
+  printf("hello myname");
+}
+```
+使用emcc编译时添加编译条件 `-s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall']"` 导出 `Module.ccall` 
+
+js 中使用 `Module.ccall(myname, returnType, argumentTypes, arguments)` 调用 webassebmly 导出的函数

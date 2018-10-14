@@ -15,6 +15,7 @@ new操作符有执行过程：
 + 设置行为： 创建一个新对象，其原型为 Person.prototype
 + 设置数据： Person接受刚上一步创建的对象作为隐式参数 this，设置新创对象的属性值this.name
 
+<!-- more -->
 两个原型： 首先是常见的对象的原型，这是在对象原型链上的对象；每个构造函数都有一个prototype属性指向一个对象，该对象成了构造函数所有实例的原型，称为实例原型。而每个实例原型的constructor属性指向构造函数，每个实例也继承了实例原型里的constructor属性
 ```
 let Person = function (name) {
