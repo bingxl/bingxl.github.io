@@ -22,7 +22,7 @@ HOST host1
     User root
 ```
 ## 说明
-配置完成后 就可以使用 ssh root@host1 命令登陆host1服务器   
+配置完成后 就可以使用 ssh host1 命令登陆host1服务器   
 *特别注意*   
 在linux中有文件权限问题， 需要设置 `~/.ssh/config` 和 `~/.ssh/id_rsa.pub` 两个文件的权限 为 `600`
 
