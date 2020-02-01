@@ -41,4 +41,4 @@ disqus: true
 disqus_shortname: bongxl
 
 # 畅言评论系统
-changyan: true
+changyan: false
