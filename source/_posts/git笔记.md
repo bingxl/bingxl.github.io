@@ -25,12 +25,13 @@ git reflog #查看历史命令
 ```
 <!-- more -->
 2. 工作区（Working Directory）
+
 3. 版本库（Repository） 
 ```
-    #.git
-	stage(index) 暂存区
-	master Git自动创建的分支
-	HEAD 指针
+#.git
+stage(index) 暂存区
+master Git自动创建的分支
+HEAD 指针
 git diff HEAD -- <file> #查看工作区和版本库里最新版本的区别
 git checkout -- <file> #用版本库的版本替换工作区的版本，无论是工作区的修改还是删除，都可以'一键还原'
 	#丢弃工作区的修改（让文件回到最近一次的git commit或git add时的状态）

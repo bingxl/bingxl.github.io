@@ -78,6 +78,7 @@ git config --global user.email "yourEmail"
 - `git remote` 查看远程仓库
 - `git remote -v` 查看远程仓库信息
 - `git remote add origin git@github.com:userName/repo-name.git` 添加远程仓库
+- `git remote rm origin` 删除已存在的远程分支
 - `git push -u origin master`第一次推送master分支的所有内容
 
 ### 分支管理
