@@ -13,7 +13,7 @@ tags:
 
 ## 操作步骤
 1. 在本地生成ssh key， `ssh-keygen` ,一路回车后的到 ~/.ssh目录下的密钥和公钥
-2. 拷贝公钥到远程主机 `ssh-copy-id user@ip`, 其中user是登陆用户名， ip是远程主机的ip地址
+2. 拷贝公钥到远程主机 `ssh-copy-id user@ip`, 其中user是登陆用户名， ip是远程主机的ip地址; 此步的目的是将公钥拷贝到服务器的authorized_keys文件中， 也可以用 `cat ~/.ssh/id_rsa.pub | ssh user@123.45.67.89 "cat >> ~/.ssh/authorized_keys"`命令代替。
 3. 设置别名登陆， 在 ~/.ssh/ 目录下新建 config 文件， 文件内容如下
 ```
 HOST host2
@@ -31,3 +31,10 @@ HOST host1
 
 更改命令`chmod 600 config`
 
+## github ssh访问失败
+最近总遇到clone时提示访问22端口超时，可以通过https端口实现ssh访问，配置上文提到的config文件，添加如下内容
+```
+Host github.com
+    HostName ssh.github.co
+    Port 443
+```
