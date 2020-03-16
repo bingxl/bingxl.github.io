@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js数组集锦 | 稻草人-前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="设计数组的函数方法toString, toLocaleString, valueOf,concat, splice, sliceindexOf,lastIndexOf,push, pop, shift, unshift,sort, reversemap, reduce, reduceRight, filter, every, some, forEach">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js数组集锦">
+<meta property="og:url" content="http://bingxl.com/js%E6%95%B0%E7%BB%84%E9%9B%86%E9%94%A6.html">
+<meta property="og:site_name" content="稻草人-前端笔记">
+<meta property="og:description" content="设计数组的函数方法toString, toLocaleString, valueOf,concat, splice, sliceindexOf,lastIndexOf,push, pop, shift, unshift,sort, reversemap, reduce, reduceRight, filter, every, some, forEach">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-07-12T16:23:01.000Z">
+<meta property="article:modified_time" content="2020-03-16T03:19:57.259Z">
+<meta property="article:author" content="bingxl">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="js数组">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106321058-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<!-- baidu Analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf1c62463e93ff3df6b3ed317e1e8d40";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- End baidu Analytics -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">稻草人-前端笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关注前端</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingxl.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js数组集锦" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js%E6%95%B0%E7%BB%84%E9%9B%86%E9%94%A6.html" class="article-date">
+  <time datetime="2017-07-12T16:23:01.000Z" itemprop="datePublished">2017-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web/">web</a>►<a class="article-category-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js数组集锦
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="设计数组的函数方法"><a href="#设计数组的函数方法" class="headerlink" title="设计数组的函数方法"></a>设计数组的函数方法</h1><p>toString, toLocaleString, valueOf,<br>concat, splice, slice<br>indexOf,lastIndexOf,<br>push, pop, shift, unshift,<br>sort, reverse<br>map, reduce, reduceRight, filter, every, some, forEach</p>
+<a id="more"></a>
+<h1 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h1><ul>
+<li>数组字面量创建：<code>var arr = [val1, val2, val3];</code></li>
+<li>数组构造函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr &#x3D; new Array();</span><br><span class="line">var arr &#x3D; new Array(1, 2, 3, 5);&#x2F;&#x2F;返回[1, 2, 3, 4, 5]</span><br><span class="line">var arr &#x3D; new Array(2);&#x2F;&#x2F; 返回 [ , , ]  一个参数时是数组的长度length</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="清空数组"><a href="#清空数组" class="headerlink" title="清空数组"></a>清空数组</h1><p>清空数组有两种方法</p>
+<ul>
+<li>arr.length = 0;</li>
+<li>arr = [];</li>
+</ul>
+<p>两者区别：js 中数组是对象，所以arr是一个指向数组值的链接，arr.length = 0时，把数组所有值清除，执行速度慢；arr = []时把arr的链接指向一个新的空数组，原数组值存在于内存中如果未被其它变量引用时则被回收。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr1 &#x3D; [1, 2, 3];</span><br><span class="line">var arr2 &#x3D; arr1;</span><br><span class="line">arr2 &#x3D; [];</span><br><span class="line">console.log(arr1);&#x2F;&#x2F; [1, 2, 3] arr1 还在</span><br><span class="line">arr2 &#x3D; arr1;</span><br><span class="line">arr2.length &#x3D; 0;</span><br><span class="line">console.log(arr1); &#x2F;&#x2F; [] arr1同时也被清空了</span><br></pre></td></tr></table></figure>
+<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>arr.toString() 返回由数组中的每个值的字符串形式拼接(以逗号分隔)的字符串<br>arr.toLocaleString() 和toString作用相同，不同之处在于对数组的每一项调用toString方法<br>arr.valueOf() 和toString类似，不过返回数组最适合的原始类型<br>arr.join()  toString只能使用逗号分隔字符串，而join可以指定分隔符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var arr1 &#x3D; [&#39;h&#39;, [&#39;e&#39;, &#39;g&#39;], &#39;n&#39;];</span><br><span class="line">var arr2 &#x3D; [1, 2, 3, 4];</span><br><span class="line">arr1.toString();&#x2F;&#x2F;&quot;h,e,g,n&quot;</span><br><span class="line">arr1.toLocaleString();&#x2F;&#x2F; &quot;h,e,g,n&quot;</span><br><span class="line">arr2.valueOf();&#x2F;&#x2F;[1, 2, 3, 4]</span><br><span class="line">arr2.toString();&#x2F;&#x2F;&quot;1,2,3,4&quot;</span><br><span class="line">arr1.valueOf();&#x2F;&#x2F;[&quot;h&quot;, Array(2), &quot;n&quot;]</span><br><span class="line">arr2.join(&#39;-&#39;);&#x2F;&#x2F;&quot;1-2-3-4&quot; 指定 - 分隔符</span><br></pre></td></tr></table></figure>
+<h1 id="堆栈、队列方法"><a href="#堆栈、队列方法" class="headerlink" title="堆栈、队列方法"></a>堆栈、队列方法</h1><p>push(item)  在数组末尾压入数组项，可以是多项 ，返回修改后的数组长度<br>pop() 弹出并返回数组最后一项<br>shift() 弹出并返回数组第一项<br>unshift() 在数组前端压入数组项并返回数组长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [4, 5, 6];</span><br><span class="line">arr.push(7, 8);</span><br><span class="line">arr; &#x2F;&#x2F;[4, 5, 6, 7, 8]</span><br><span class="line">arr.push([9, 10]);</span><br><span class="line">arr; &#x2F;&#x2F;[4, 5, 6, 7, 8, [9, 10]]</span><br><span class="line"></span><br><span class="line">arr.pop();</span><br><span class="line">arr; &#x2F;&#x2F;[4, 5, 6, 7, 8]</span><br><span class="line">arr.shift() ;&#x2F;&#x2F; arr  [5, 6 ,7, 8]</span><br><span class="line">arr,unshift(1, 2, 3, 4); &#x2F;&#x2F;arr [1, 2, 3, 4, 5, 6, 7, 8]</span><br></pre></td></tr></table></figure>
+
+<h1 id="重排序-sort和reverse"><a href="#重排序-sort和reverse" class="headerlink" title="重排序 sort和reverse"></a>重排序 sort和reverse</h1><p>arr.reverse() 反转数组，第一项变最后一项，最后一项变第一项，依次类推<br>sort()  对数组重排序，默认从小到大排序(按字符比较而非数值 如 2 &gt; 100) ,可以传入排序函数<br>sort的函数参数里面，value1是之前排好的最近一个数，value2是新传入的参数，当函数返回负值时不调换位置，当返回正值是调换位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [1, 2, 3, 100];</span><br><span class="line">arr.reverse(); &#x2F;&#x2F;[100, 3, 2, 1]</span><br><span class="line">arr.sort();&#x2F;&#x2F;[1, 100, 2, 3]</span><br><span class="line">arr.sort(compare);  &#x2F;&#x2F;[1, 2, 3, 100]</span><br><span class="line">function compare(value1, currentValue)&#123;</span><br><span class="line">  console.log(value1, currentValue);</span><br><span class="line">  return value1 - currentValue;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;*</span><br><span class="line">排序函数打印出来的,可以看出是插入排序&#x2F;&#x2F; 当数组过长时排序方法已不在是插入排序</span><br><span class="line">1 100</span><br><span class="line">100 2</span><br><span class="line">1 2</span><br><span class="line">100 3</span><br><span class="line"> 2 3</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h1 id="操作方法与位置方法-concat，slice-splice，-indexOf-，lastIndexOf"><a href="#操作方法与位置方法-concat，slice-splice，-indexOf-，lastIndexOf" class="headerlink" title="操作方法与位置方法 concat，slice,  splice， indexOf ，lastIndexOf"></a>操作方法与位置方法 concat，slice,  splice， indexOf ，lastIndexOf</h1><p>arr.concat() 基于当前数组的所有项创建一个新数组，传入的项被添加到数组末尾构成新数组<br>arr.slice(start, end ) 基于当前数组中的一项或多项创建新数组,start为开始位置，end为结束位置，end没有的话默认为到数组结束<br>arr.splice(start, num, arr1, arr2……)  从start位置开始删除num项数组，然后在start位置插入arr1 ，arr2 ,,,,,,,,,。num为0时没有删除项， arr1, arr2 ,,,,,可以没有<br>arr.indexOf(value, start) 搜索value值在数组中的索引值  ,start为开始项默认为0，未找到返回 -1<br>arr.lastIndexOf(value, start) 从数组的末尾开始查找(倒序查找)，没找到返回 -1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">var arr1 &#x3D; [1, 2];</span><br><span class="line">var arr2 &#x3D; arr1.concat(3, [4, 5]);&#x2F;&#x2F;[ 1, 2, 3, 4, 5 ]</span><br><span class="line">arr2.slice()</span><br><span class="line">&#x2F;&#x2F;[ 1, 2, 3, 4, 5 ]</span><br><span class="line"> arr2.slice(1)</span><br><span class="line">&#x2F;&#x2F;[ 2, 3, 4, 5 ] </span><br><span class="line">arr2.slice(1,4)</span><br><span class="line">&#x2F;&#x2F;[ 2, 3, 4 ]</span><br><span class="line"></span><br><span class="line"> arr2</span><br><span class="line">&#x2F;&#x2F;[ 1, 2, 3, 4, 5 ]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;以下为node环境下， &gt; 为js表达式，回车后是输出</span><br><span class="line">&gt; arr2.slice(1)</span><br><span class="line">[ 2, 3, 4, 5 ]</span><br><span class="line">&gt; arr2.slice(1,2)</span><br><span class="line">[ 2 ]</span><br><span class="line">&gt; arr2.slice(1,4)</span><br><span class="line">[ 2, 3, 4 ]</span><br><span class="line">&gt; arr2</span><br><span class="line">[ 1, 2, 3, 4, 5 ]</span><br><span class="line">&gt; arr2.splice(0,1)</span><br><span class="line">[ 1 ]</span><br><span class="line">&gt; arr2</span><br><span class="line">[ 2, 3, 4, 5 ]</span><br><span class="line">&gt; arr2.splice(0,1,1)</span><br><span class="line">[ 2 ]</span><br><span class="line">&gt; arr2</span><br><span class="line">[ 1, 3, 4, 5 ]</span><br><span class="line">&gt; arr2.splice(1,0,2)</span><br><span class="line">[]</span><br><span class="line">&gt; arr2</span><br><span class="line">[ 1, 2, 3, 4, 5 ]</span><br><span class="line">&gt; arr2.splice(5,0,6, 7, 8)</span><br><span class="line">[]</span><br><span class="line">&gt; arr2</span><br><span class="line">[ 1, 2, 3, 4, 5, 6, 7, 8 ]</span><br><span class="line">&gt; arr2.indexOf(8)</span><br><span class="line">7</span><br><span class="line">&gt; arr2.lastIndexOf(8)</span><br><span class="line">7</span><br><span class="line">&#x2F;&#x2F; 当查找的值在数组中有多个时indexOf 和lastIndexOf返回不同</span><br></pre></td></tr></table></figure>
+
+<h1 id="迭代方法-map-filter-every-some-forEach-reduce-reduceRight"><a href="#迭代方法-map-filter-every-some-forEach-reduce-reduceRight" class="headerlink" title="迭代方法 map, filter, every, some, forEach, reduce, reduceRight"></a>迭代方法 map, filter, every, some, forEach, reduce, reduceRight</h1><p>arr.map() 对数组中的每一项运行给定的函数，返回每次调用的结果组成的数组。<br>arr.filter() 对数组中的每一项运行给定的函数，返回由给定函数返回ture的项组成的新数组。<br>arr.every()对数组中的每一项运行给定的函数，如果该函数对每一项都返回true则返回true<br>arr.some()对数组中的每一项运行给定的函数，如果该函数对任一项返回true则返回true<br>arr.forEach()对数组中的每一项运行给定的函数，没有返回值<br>以上5个方法传入的函数有三个参数 分别是item、index、arr，分别是当前项，当前项的索引，数组</p>
+<p>arr.reduce()，arr.reduceRight()<br>迭代所有项，然后构建一个最终返回值，只是迭代的顺序不同，reduce从左到右，reduceRight从右到左。传入的函数的参数有prev、cur、index、arr，分别是前一项迭代的结果，当前项，当前项的索引，数组arr</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">arr.map(function(item, index, arr)&#123;</span><br><span class="line">  return item * 2;</span><br><span class="line">&#125;); &#x2F;&#x2F;数组的每项都乘2 ，返回 [2, 4, 6, 8, 10]</span><br><span class="line"></span><br><span class="line">arr.filter(function(item, index, arr)&#123;</span><br><span class="line">  return item % 2 &#x3D;&#x3D; 0;</span><br><span class="line">&#125;); &#x2F;&#x2F; 返回偶数项 [2, 4]</span><br><span class="line"></span><br><span class="line">arr.every(function(item, index, arr)&#123;</span><br><span class="line">    return item &gt; 0;</span><br><span class="line">&#125;); &#x2F;&#x2F; 数组所有项都大于0 ，返回 true   </span><br><span class="line"></span><br><span class="line">arr.some(function(item, index, arr)&#123;</span><br><span class="line">  return item &lt; 2;</span><br><span class="line">&#125;);&#x2F;&#x2F;  数组里有小于2的项？ 返回true</span><br><span class="line"></span><br><span class="line">arr.forEach(function( item, index, arr)&#123;</span><br><span class="line">    console.log(item, index, arr);</span><br><span class="line">&#125;);&#x2F;&#x2F; 没有返回项</span><br><span class="line">&#x2F;*</span><br><span class="line">forEach打印出来的</span><br><span class="line">1 0 [ 1, 2, 3, 4, 5 ]</span><br><span class="line">2 1 [ 1, 2, 3, 4, 5 ]</span><br><span class="line">3 2 [ 1, 2, 3, 4, 5 ]</span><br><span class="line">4 3 [ 1, 2, 3, 4, 5 ]</span><br><span class="line">5 4 [ 1, 2, 3, 4, 5 ]</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">arr.reduce(function(prev, cur, index, array)&#123;</span><br><span class="line">  console.log(prev,cur);</span><br><span class="line">  return prev * cur;</span><br><span class="line">&#125;);&#x2F;&#x2F; 返回数组所有项相乘的结果120</span><br><span class="line">&#x2F;*</span><br><span class="line">打印结果</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">6 4</span><br><span class="line">24 5</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">arr.reduceRight(function(prev, cur, index, array)&#123;</span><br><span class="line">  console.log(prev,cur);</span><br><span class="line">  return prev * cur;</span><br><span class="line">&#125;);&#x2F;&#x2F; 返回数组所有项相乘的结果120</span><br><span class="line">&#x2F;*</span><br><span class="line">打印结果</span><br><span class="line">5 4</span><br><span class="line">20 3</span><br><span class="line">60 2</span><br><span class="line">120 1</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E6%95%B0%E7%BB%84%E9%9B%86%E9%94%A6.html" data-id="ck7twgwln00107eoq41diamvm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E7%BD%91%E6%98%93%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%88%86%E4%BA%AB.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          网易前端工程师分享
+        
+      </div>
+    </a>
+  
+  
+    <a href="/markdown-%E8%AF%AD%E6%B3%95.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">markdown 语法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E5%88%86%E4%BA%AB/">分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E6%9E%B6%E6%9E%84/">架构</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser-sync/" rel="tag">browser-sync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">js字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c/c++模块问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" rel="tag">博客园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" rel="tag">实时刷新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" rel="tag">百度统计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/apply-call-bind/" style="font-size: 10px;">apply, call, bind</a> <a href="/tags/apt/" style="font-size: 12.5px;">apt</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/browser-sync/" style="font-size: 10px;">browser-sync</a> <a href="/tags/event/" style="font-size: 10px;">event</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" style="font-size: 10px;">git关联远程分支</a> <a href="/tags/git%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">git笔记</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">js单一对象</a> <a href="/tags/js%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">js原型</a> <a href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">js字符串</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1/" style="font-size: 12.5px;">js对象</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" style="font-size: 10px;">js对象保护</a> <a href="/tags/js%E6%95%B0%E7%BB%84/" style="font-size: 10px;">js数组</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" style="font-size: 10px;">node c/c++模块问题</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 10px;">node命令行</a> <a href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">node文件模块</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" style="font-size: 10px;">npm包发布</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">事件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 17.5px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" style="font-size: 10px;">博客园</a> <a href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" style="font-size: 10px;">实时刷新</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" style="font-size: 10px;">百度统计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">webassembly向导--译</a>
+          </li>
+        
+          <li>
+            <a href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html">ssh别名登陆服务器</a>
+          </li>
+        
+          <li>
+            <a href="/fetch_%E7%BF%BB%E8%AF%91.html">fetch</a>
+          </li>
+        
+          <li>
+            <a href="/python-1%E5%9F%BA%E7%A1%80.html">python.1基础</a>
+          </li>
+        
+          <li>
+            <a href="/nodejsEventModule.html">nodejs事件模块</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018~2020 bingxl
+      <br> 
+      <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">陕ICP备16006936号</a>
+      <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>稻草人-前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="关于前端、关于生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="稻草人-前端笔记">
+<meta property="og:url" content="http://bingxl.com/index.html">
+<meta property="og:site_name" content="稻草人-前端笔记">
+<meta property="og:description" content="关于前端、关于生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="bingxl">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106321058-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<!-- baidu Analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf1c62463e93ff3df6b3ed317e1e8d40";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- End baidu Analytics -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">稻草人-前端笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关注前端</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingxl.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-webassembly向导--译" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" class="article-date">
+  <time datetime="2020-03-16T03:19:57.259Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">webassembly向导--译</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!--
+@title webAssembly 环境搭建
+@author bingxl
+@emaill scarecrowlxb@qq.com 
+ -->
+<h1 id="webAssembly-开发者指导"><a href="#webAssembly-开发者指导" class="headerlink" title="webAssembly 开发者指导"></a>webAssembly 开发者指导</h1><p>本页面提供一步一步的操作将一个简单的程序编译成webassembly</p>
+<h2 id="前提要求"><a href="#前提要求" class="headerlink" title="前提要求"></a>前提要求</h2><p>为了编译成webAssembly，需要提前安装一些工具：</p>
+<ul>
+<li>Git。在Linux和OSX下已自带了Git，在Windows下需要安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git for Windows</a></li>
+<li>CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载<a href="https://cmake.org/download" target="_blank" rel="noopener">CMake installer</a>;</li>
+<li>编译工具。 在linux下安装<a href="https://askubuntu.com/questions/154402/install-gcc-on-ubuntu-12-04-lts" target="_blank" rel="noopener">GCC</a>，在OSX下安装<a href="https://itunes.apple.com/us/app/xcode/id497799835" target="_blank" rel="noopener">Xcode</a>。在Windows下安装 <a href="://www.visualstudio.com/downloads/">Visual Studio 2015 Community with Update 3</a> 或更新的版本;</li>
+<li>Python2.7.x。在Linux和OSX下大部分都内置了Python2.7版本，没有的需要安装，Windows下需要自动下载安装；
+        
+          <p class="article-more-link">
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" data-id="ck7twgwm2001s7eoq5rkw4z2l" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-ssh别名登陆服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html" class="article-date">
+  <time datetime="2019-04-12T15:22:08.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html">ssh别名登陆服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>做开发时常常需要登陆远程服务器执行一些操作，以前每次都是使用 ssh userName@ip 来登陆，然而ip地址很难记，每次都需要查找下，导致效率太低下，使用ssh别名登陆后可以简化为 ssh userName@aliasName 登陆，方便记忆，操作也简化了，而且aliasName 还可以用于scp之类的操作中</p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ol>
+<li>在本地生成ssh key， <code>ssh-keygen</code> ,一路回车后的到 ~/.ssh目录下的密钥和公钥</li>
+<li>拷贝公钥到远程主机 <code>ssh-copy-id user@ip</code>, 其中user是登陆用户名， ip是远程主机的ip地址; 此步的目的是将公钥拷贝到服务器的authorized_keys文件中， 也可以用 <code>cat ~/.ssh/id_rsa.pub | ssh user@123.45.67.89 &quot;cat &gt;&gt; ~/.ssh/authorized_keys&quot;</code>命令代替。</li>
+<li>设置别名登陆， 在 ~/.ssh/ 目录下新建 config 文件， 文件内容如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HOST host2</span><br><span class="line">    HostName 127.0.0.1 # 远程主机的IP地址</span><br><span class="line">    User root # 登陆名</span><br><span class="line"></span><br><span class="line">HOST host1</span><br><span class="line">    HostName 123.123.123</span><br><span class="line">    User root</span><br></pre></td></tr></table></figure>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2>配置完成后 就可以使用 ssh host1 命令登陆host1服务器</li>
+</ol>
+<p><em>特别注意</em><br>在linux中有文件权限问题， 需要设置 <code>~/.ssh/config</code> 和 <code>~/.ssh/id_rsa.pub</code> 两个文件的权限 为 <code>600</code></p>
+<p>更改命令<code>chmod 600 config</code></p>
+<h2 id="github-ssh访问失败"><a href="#github-ssh访问失败" class="headerlink" title="github ssh访问失败"></a>github ssh访问失败</h2><p>最近总遇到clone时提示访问22端口超时，可以通过https端口实现ssh访问，配置上文提到的config文件，添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    HostName ssh.github.co</span><br><span class="line">    Port 443</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html" data-id="ck7twgwlx001l7eoqb43sfqcu" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-fetch_翻译" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/fetch_%E7%BF%BB%E8%AF%91.html" class="article-date">
+  <time datetime="2018-10-18T18:34:03.000Z" itemprop="datePublished">2018-10-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/fetch_%E7%BF%BB%E8%AF%91.html">fetch</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="fetch-概览"><a href="#fetch-概览" class="headerlink" title="fetch 概览"></a>fetch 概览</h1><blockquote>
+<p>本文翻译自 devdocs 文档中的 <a href="https://devdocs.io/dom/fetch_api/using_fetch" target="_blank" rel="noopener">Fetch API: Using Fetch</a> 一节</p>
+</blockquote>
+<p><code>Fetch API</code> 提供了访问和操作部分 HTTP 管道的 js 接口, 比如 request(请求)和response(响应). 同时也提供了一个使用异步方法简便获取网络资源的全局函数 <code>fetch()</code>.</p>
+<p>之前实现的 <code>XMLHttpRequest</code> (Ajax) 具有相同的功能.  <code>fetch</code> 更容易用在类似<code>Service Workers</code> 的其它技术里面.</p>
+<p>简单的列子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'url'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// http 状态码错误, 比如是 404, 500 等时 res.ok 为 false</span></span><br><span class="line">    <span class="keyword">if</span> (res.ok) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.json(); <span class="comment">// 返回的是一个 promise</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="params">json</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 从后台获取到的json数据</span></span><br><span class="line">    <span class="built_in">console</span>.log(json);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// http 状态码错误并不会触发, 触发 catch 的条件是网络请求失败或者有阻止请求完成的事件发生.</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'发生了一些错误'</span>, err);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/fetch_%E7%BF%BB%E8%AF%91.html" data-id="ck7twgwkx000b7eoq64arh52b" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-python-1基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/python-1%E5%9F%BA%E7%A1%80.html" class="article-date">
+  <time datetime="2017-12-07T10:42:24.000Z" itemprop="datePublished">2017-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/python-1%E5%9F%BA%E7%A1%80.html">python.1基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="python代码转换成二进制"><a href="#python代码转换成二进制" class="headerlink" title="python代码转换成二进制"></a>python代码转换成二进制</h2><p>python代码的执行过程是：源代码-》解析器-》字节码-》解析器-》机器码，pyc和pyo文件是以字节码的形式存在，可以加速代码加载速度，两者不一样的地方在于pyo文件是经过优化的字节码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 生成pyc和pyo文件的方式</span><br><span class="line">python -m py_compile file.py  #将file.py转化成pyc 文件</span><br><span class="line">python -O -m py_compile file.py  #将file.py转化成pyo文件</span><br></pre></td></tr></table></figure>
+
+<h1 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h1><p>从文件加载：np.loadtxt(filepath, dtype, comments,delimiter, converters, skiprows,usercols,ndmin, unpack)<br>存储到文件： np.savetxt(filepath, X, fmt, delimiter, newline, header, footer, comments)</p>
+<h1 id="patplotlib"><a href="#patplotlib" class="headerlink" title="patplotlib"></a>patplotlib</h1><p>绘制散点图： plt.scatter(X, Y, c, marker, label)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/python-1%E5%9F%BA%E7%A1%80.html" data-id="ck7twgwlv001i7eoqe3xc2v94" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-nodejsEventModule" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/nodejsEventModule.html" class="article-date">
+  <time datetime="2017-11-07T19:35:29.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web/">web</a>►<a class="article-category-link" href="/categories/web/nodejs/">nodejs</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/nodejsEventModule.html">nodejs事件模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>nodejs里所有事件类型基本都是由events模块开提供, js是异步执行的,在很多情况下需要同步执行, 这时可以使用events模块来实现同步</p>
+<p>event模块主要是EventEmitter类, 使用event.EventEmitter类来实例化一个事件对象</p>
+<p>‘’’<br>let event = require(‘events’);  // 引入events模块<br>let emit = new event.EventEmitter();  // 实例化一个events对象</p>
+<p>‘’’</p>
+        
+          <p class="article-more-link">
+            <a href="/nodejsEventModule.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/nodejsEventModule.html" data-id="ck7twgwlq00177eoqejx22ks0" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-js对象之实例工厂" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html" class="article-date">
+  <time datetime="2017-09-03T18:36:12.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html">js对象之实例工厂</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="new相关"><a href="#new相关" class="headerlink" title="new相关"></a>new相关</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let Person &#x3D; function (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">&#125;;</span><br><span class="line">let lihua &#x3D; new Person(&#39;lihua&#39;); &#x2F;&#x2F; lihua是Person对象的一个实例</span><br></pre></td></tr></table></figure>
+<p>new操作符有执行过程：</p>
+<ul>
+<li>设置行为： 创建一个新对象，其原型为 Person.prototype</li>
+<li>设置数据： Person接受刚上一步创建的对象作为隐式参数 this，设置新创对象的属性值this.name</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html" data-id="ck7twgwlh000p7eoqgdgobkhb" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-js对象之对象间的原型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html" class="article-date">
+  <time datetime="2017-09-03T18:35:58.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html">js对象之对象间的原型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>原型用来描述对象之间的继承关系。每个对象都有原型，通过[[prototype]]这个内部属性描述。对象会继承其原型的所有属性和方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let obj1 &#x3D; &#123;</span><br><span class="line">    name: &#39;obj1&#39;,</span><br><span class="line">    desc: function() &#123;</span><br><span class="line">        console.log(&quot;obj name is:&quot;, this.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let obj2 &#x3D; Object.create(obj1); &#x2F;&#x2F;通过obj1创建对象obj2， obj2的原型是obj1</span><br><span class="line">obj2.name &#x3D; &#39;obj2&#39;;</span><br><span class="line">obj2.desc(); &#x2F;&#x2F; obj2 继承了obj2的原型 obj1中的方法</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html" data-id="ck7twgwlj000s7eoqbw07b7gk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="js对象之对象间的原型-js对象之构造函数之间的继承" class="article article-type-js对象之对象间的原型" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF.html" class="article-date">
+  <time datetime="2017-09-03T18:35:17.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF.html">js对象之构造函数之间的继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF.html" data-id="ck7twgwlk000t7eoq810qf460" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-js对象之单一对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html" class="article-date">
+  <time datetime="2017-09-03T18:33:55.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html">js对象之单一对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js所有对象都是从字符串到值得映射，对象的属性分为三种：数据属性(最常见)、访问器(设置属性的的获取和设置)、内置属性(在语言规范中定义的js无法直接访问)。</p>
+<h2 id="访问属性"><a href="#访问属性" class="headerlink" title="访问属性"></a>访问属性</h2><p>访问属性有两种方法，点操作符和中括号操作符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let obj &#x3D; &#123;test: &#39;hello&#39;&#125;;</span><br><span class="line">obj.test;</span><br><span class="line">let keyName &#x3D; &#39;test&#39;;</span><br><span class="line">obj[&#39;test&#39;] &#x3D;+ obj.test &#x3D;&#x3D; obj[keyName]</span><br></pre></td></tr></table></figure>
+<p>使用点操作符比较方便顺手，使用中括号可以通过计算变量后再得到属性；</p>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html" data-id="ck7twgwlf000o7eoq03fm89k9" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+  
+    <article id="post-git笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/git%E7%AC%94%E8%AE%B0.html" class="article-date">
+  <time datetime="2017-08-31T17:38:01.000Z" itemprop="datePublished">2017-08-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/git%E7%AC%94%E8%AE%B0.html">git笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用git步骤</p>
+<ol>
+<li><p>安装软件后打开gitbash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;yourname@example.com&quot;</span><br><span class="line"></span><br><span class="line">git init</span><br><span class="line">git add &lt;hello.txt&gt;  # 把所有要提交的文件修改放到暂存区</span><br><span class="line">git commit -m &#39;add a file&#39; # 把暂存区的所有内容提交到当前分支</span><br><span class="line">git status #掌握工作区状态</span><br><span class="line">git diff #查看文件修改内容</span><br><span class="line">git log #查看提交历史</span><br><span class="line">	git log --pretty&#x3D;oneline</span><br><span class="line">git reset --hard HEAD^ #回退到上一个版本</span><br><span class="line">	HEAD^^(上上版本),HEAD~100(往上100个版本)</span><br><span class="line">	commit id(版本号) 可回到指定版本</span><br><span class="line">git reflog #查看历史命令</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/git%E7%AC%94%E8%AE%B0.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/git%E7%AC%94%E8%AE%B0.html" data-id="ck7twgwl0000g7eoq2yxyabqi" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E5%88%86%E4%BA%AB/">分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E6%9E%B6%E6%9E%84/">架构</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser-sync/" rel="tag">browser-sync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">js字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c/c++模块问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" rel="tag">博客园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" rel="tag">实时刷新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" rel="tag">百度统计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/apply-call-bind/" style="font-size: 10px;">apply, call, bind</a> <a href="/tags/apt/" style="font-size: 12.5px;">apt</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/browser-sync/" style="font-size: 10px;">browser-sync</a> <a href="/tags/event/" style="font-size: 10px;">event</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" style="font-size: 10px;">git关联远程分支</a> <a href="/tags/git%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">git笔记</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">js单一对象</a> <a href="/tags/js%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">js原型</a> <a href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">js字符串</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1/" style="font-size: 12.5px;">js对象</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" style="font-size: 10px;">js对象保护</a> <a href="/tags/js%E6%95%B0%E7%BB%84/" style="font-size: 10px;">js数组</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" style="font-size: 10px;">node c/c++模块问题</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 10px;">node命令行</a> <a href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">node文件模块</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" style="font-size: 10px;">npm包发布</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">事件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 17.5px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" style="font-size: 10px;">博客园</a> <a href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" style="font-size: 10px;">实时刷新</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" style="font-size: 10px;">百度统计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">webassembly向导--译</a>
+          </li>
+        
+          <li>
+            <a href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html">ssh别名登陆服务器</a>
+          </li>
+        
+          <li>
+            <a href="/fetch_%E7%BF%BB%E8%AF%91.html">fetch</a>
+          </li>
+        
+          <li>
+            <a href="/python-1%E5%9F%BA%E7%A1%80.html">python.1基础</a>
+          </li>
+        
+          <li>
+            <a href="/nodejsEventModule.html">nodejs事件模块</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018~2020 bingxl
+      <br> 
+      <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">陕ICP备16006936号</a>
+      <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

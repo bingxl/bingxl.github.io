@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>node文件模块 | 稻草人-前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概述 文件操作的同步与异步 对文件的读写操作 从指定位置开始读写文件 创建与读取目录 查看文件或目录信息 其它操作 文件流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node文件模块">
+<meta property="og:url" content="http://bingxl.com/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97.html">
+<meta property="og:site_name" content="稻草人-前端笔记">
+<meta property="og:description" content="概述 文件操作的同步与异步 对文件的读写操作 从指定位置开始读写文件 创建与读取目录 查看文件或目录信息 其它操作 文件流">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-07T11:32:58.000Z">
+<meta property="article:modified_time" content="2020-03-16T03:19:57.259Z">
+<meta property="article:author" content="bingxl">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="node文件模块">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106321058-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+<!-- baidu Analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cf1c62463e93ff3df6b3ed317e1e8d40";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- End baidu Analytics -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">稻草人-前端笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关注前端</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingxl.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-node文件模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97.html" class="article-date">
+  <time datetime="2017-08-07T11:32:58.000Z" itemprop="datePublished">2017-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node文件模块
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>文件操作的同步与异步</li>
+<li>对文件的读写操作</li>
+<li>从指定位置开始读写文件</li>
+<li>创建与读取目录</li>
+<li>查看文件或目录信息</li>
+<li>其它操作</li>
+<li>文件流<a id="more"></a>
+<h2 id="文件操作的同步与异步"><a href="#文件操作的同步与异步" class="headerlink" title="文件操作的同步与异步"></a>文件操作的同步与异步</h2>所有文件、目录的创建、读取、删除操作都有同步和异步两种方式，同步方式方法名后有Sync</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line">fs.readFile(__dirname + &#39;&#x2F;index.md&#39;,(err,stdout,stderr)&#123;</span><br><span class="line">    if(err)&#123;</span><br><span class="line">        console.log(stderr);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(&#39;异步读取文件&#39;, stdout);</span><br><span class="line">&#125;; &#x2F;&#x2F;异步方式</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let data &#x3D; fs.readFileSync(__dirname + &#39;index.md&#39;);</span><br><span class="line">console.log(&#39;同步方式读取文件&#39;, data);</span><br></pre></td></tr></table></figure>
+
+<h2 id="对文件的读写操作"><a href="#对文件的读写操作" class="headerlink" title="对文件的读写操作"></a>对文件的读写操作</h2><h3 id="完整读写"><a href="#完整读写" class="headerlink" title="完整读写"></a>完整读写</h3><h4 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h4><p>readFile(path, {encoding:’’,flag:’’}, callback(err, data)):完整读取文件<br>encoding: utf8, ascii, base64;  默认二进制<br>flag:   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">r, 读取文件，不存在则抛出异常</span><br><span class="line">r+,读写方式，文件不存在则抛出异常</span><br><span class="line">rs, 同步方式读取，忽略本地缓存，文件不存在则抛出异常</span><br><span class="line">rs+, 同步读取写入</span><br><span class="line">w, 写入文件，不存在则创建，存在则清空</span><br><span class="line">wx, 排他式写入文件</span><br><span class="line">w+, 读取并写入</span><br><span class="line">wx+, 读取并写入，拍他式</span><br><span class="line">a, 追加写入文件，不存在则创建</span><br><span class="line">ax, 排他式写入</span><br><span class="line">a+, 读取并追加</span><br><span class="line">ax+ 读取并追加，排他式</span><br></pre></td></tr></table></figure>
+
+<h4 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h4><p>fs.writeFile(path, data, [options], callback)     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">option:&#123;</span><br><span class="line">    flag:&#39;&#39;,</span><br><span class="line">    encoding: &#39;utf8&#39;, &#x2F;&#x2F;utf8, ascii, base64</span><br><span class="line">    mode:&#39;&#39; &#x2F;&#x2F;对文件的读写权限，默认为0666</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>mode：第一位为0，第二位为文件或目录所有者的权限， 第三个为文件或目录所有者所属用户组的权限， 第四个为其他人权限<br>数字所对应的权限：</p>
+<ul>
+<li>1:执行权限</li>
+<li>2：写权限</li>
+<li>3：读权限<br>fs.writeFileSync(); 同步版本的 writeFile()</li>
+</ul>
+<p>fs.appendFile(fileName, data, [options], callback) // 在文件地步追加写入数据，文件不存在则创建文件<br>options中flag默认为a</p>
+<p>同步版：appendFileSync()</p>
+<h2 id="从指定位置开始读写文件"><a href="#从指定位置开始读写文件" class="headerlink" title="从指定位置开始读写文件"></a>从指定位置开始读写文件</h2><h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><p>fs.open(filename, flags, [mode], callback(err, fd)),fd是文件句柄。同步版：fs.openSync()  //106行<br>文件句柄用于read 、 readSync、 write 、writeSync 方法</p>
+<p>fs.read(fd, buffer, offset, length, position, callback(err, bytesRead, buffer))</p>
+<ul>
+<li>buffer是存储读取数据的缓冲池；</li>
+<li>offset是存储池中开始存储时的偏移字节数；</li>
+<li>length 需要读取的字节数；</li>
+<li>position 读取文件的开始位置 以字节为单位；</li>
+<li>bytesRead 实际读取到的字节数，在 length + position 大于文件长度时bytesRead !== length</li>
+</ul>
+<p>同步读取：readSync()返回实际读取到的字节数</p>
+<h3 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h3><p>fs.write(fd, buffer, offset, length, position,callback(err, writeen, buffer))</p>
+<ul>
+<li>written: 被写入的字节数</li>
+<li>buffer： 被读取的缓冲区对象 和write参数里的buffer相同</li>
+</ul>
+<p>同步版： writeSync();</p>
+<h3 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h3><p>fs.close(fd, callback)<br>同步版本：fs.closeSync(fd)<br>fs.fsync(fd, callback) 同步缓存中的数据到文件<br>fs.fsyncSync(fd) 同步版本的fsync</p>
+<h2 id="创建与读取目录"><a href="#创建与读取目录" class="headerlink" title="创建与读取目录"></a>创建与读取目录</h2><p>fs.mkdir(path, [mode], callback(err))</p>
+<ul>
+<li>mode默认0777<br>mkdirSync();</li>
+</ul>
+<p>fs.readdir(path, callback(err, files))<br>fs.readdirSync()    </p>
+<h2 id="查看文件或目录信息"><a href="#查看文件或目录信息" class="headerlink" title="查看文件或目录信息"></a>查看文件或目录信息</h2><p>fs.stat(path, callback(err, stats)),fs.lstat(path, callback(err, stats))两者基本相同，lstat不能查看符号链接文件信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">stats对象：&#123;</span><br><span class="line">    isFile(),</span><br><span class="line">    isDirectory(),</span><br><span class="line">    isBlockDevice(),</span><br><span class="line">    isCharacterDevice() ,是否是字符设备文件</span><br><span class="line">    mode</span><br><span class="line">    nlink 硬链接数量</span><br><span class="line">    uid 文件所有者ID</span><br><span class="line">    gid 文件所有者所在组的ID</span><br><span class="line">    rdev</span><br><span class="line">    blksize</span><br><span class="line">    ino</span><br><span class="line">    size 文件字节数</span><br><span class="line">    blocks</span><br><span class="line">    atimeMs</span><br><span class="line">    mtimeMs</span><br><span class="line">    ctimeMs</span><br><span class="line">    birthtimeMs</span><br><span class="line">    atime 文件访问时间</span><br><span class="line">    mtime 文件修改时间</span><br><span class="line">    ctime 文件创建时间</span><br><span class="line">    birthtime</span><br><span class="line">    _checkModeProperty</span><br><span class="line">    isDirectory</span><br><span class="line">    isFile</span><br><span class="line">    isBlockDevice</span><br><span class="line">    isCharacterDevice</span><br><span class="line">    isSymbolicLink</span><br><span class="line">    isFIFO</span><br><span class="line">    isSocket</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同步版：fs.statSync   fs.lstatSync</p>
+<p>使用open和openSync打开的文件使用fs.fstat(fd,callback)访问信息，同步版为fs.fstatSync</p>
+<h3 id="检查文件或目录是否存在"><a href="#检查文件或目录是否存在" class="headerlink" title="检查文件或目录是否存在"></a>检查文件或目录是否存在</h3><p>fs.exists(path, callback(exists)) 回掉函数的参数为布尔值，文件存在则为true<br>同步版本：fs.existsSync</p>
+<h3 id="获取绝对路径"><a href="#获取绝对路径" class="headerlink" title="获取绝对路径"></a>获取绝对路径</h3><p>fs.realpath(path,[cache],callback(err, resolvedPath))<br>cache是预先指定的路径对象：{‘/etc’: ‘/somepath/etc’}<br>同步版： fs.realpathSync()</p>
+<h3 id="修改文件访问时间和修改时间"><a href="#修改文件访问时间和修改时间" class="headerlink" title="修改文件访问时间和修改时间"></a>修改文件访问时间和修改时间</h3><p>fs.utimes(path, atime, mtime, callback(err))<br>使用open打开的文件时间修改使用：fs.futimes(fd, atime, mtime, callback)</p>
+<h3 id="修改文件或目录的读写权限"><a href="#修改文件或目录的读写权限" class="headerlink" title="修改文件或目录的读写权限"></a>修改文件或目录的读写权限</h3><p>fs.chmod(path, mode, callback(err))<br>fs.fchomd(fd, mode, callback)   使用open打开的文件 </p>
+<h2 id="其他操作-P118"><a href="#其他操作-P118" class="headerlink" title="其他操作 P118"></a>其他操作 P118</h2><h3 id="移动文件或目录"><a href="#移动文件或目录" class="headerlink" title="移动文件或目录"></a>移动文件或目录</h3><p>fs.rename(oldname, newname, callback(err))</p>
+<h3 id="硬链接操作"><a href="#硬链接操作" class="headerlink" title="硬链接操作"></a>硬链接操作</h3><p><em>硬链接</em>：实际上就是文件名，通过特殊操作可以为文件创造多个文件名即多个硬链接</p>
+<p>创建硬链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.link(srcpath, dstpath,callback(err))</span><br><span class="line">srcpath为需要创建硬链接的文件的路径及文件名，dstpath与srcpath必须在同一卷中</span><br><span class="line"></span><br><span class="line">linkSync同步版</span><br></pre></td></tr></table></figure>
+
+<p>删除硬链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.unlink(path,callback(err)); &#x2F;&#x2F; 当删除的硬链接是文件的最后一个硬链接时等同于删除文件</span><br></pre></td></tr></table></figure>
+<h3 id="符号链接"><a href="#符号链接" class="headerlink" title="符号链接"></a>符号链接</h3><p>符号链接亦称软链接，是一种仅包含另一个文件或目录的路径及文件名或目录名的特殊文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建</span><br><span class="line">fs.symlink(srcpath, dstpath, [type], callback)</span><br><span class="line">&#x2F;&#x2F; type 为符号链接的类型默认为 file ，目录类型为 dir  </span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 读取</span><br><span class="line">fs.readlink(path, callback(err, linkString))</span><br><span class="line">&#x2F;&#x2F; 读取链接中所包含的另一个文件或目录的路径及文件名或目录名</span><br></pre></td></tr></table></figure>
+<h3 id="截断文件"><a href="#截断文件" class="headerlink" title="截断文件"></a>截断文件</h3><p>文件截断是先清楚文件内容，然后修改文件尺寸的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.truncate(filename, length, callback(err))</span><br><span class="line"></span><br><span class="line">fs.ftruncate(fd, length, callback);&#x2F;&#x2F; 对使用open打开的文件进行截断</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除空目录"><a href="#删除空目录" class="headerlink" title="删除空目录"></a>删除空目录</h3><p>fs.rmdir(path, callback(err))</p>
+<h3 id="监视文件或目录"><a href="#监视文件或目录" class="headerlink" title="监视文件或目录"></a>监视文件或目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fs.watchFile(file,[options],listener(curr, prev))</span><br><span class="line">&#x2F;&#x2F; options:&#123;</span><br><span class="line">    persistent: true 当指定了监视文件后是否停止当前运行的程序</span><br><span class="line">    interval: int  每隔多少毫秒监视一次文件是否发生改变</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">curr 和 prev都是两个 fs.stats对象</span><br></pre></td></tr></table></figure>
+<p>fs.unwatchFile(filname, [listener]),当文件发生更改时取消某个处理函数，没有listener表示取消监听</p>
+<p>fs.watch(file, [options],listener(event, file));event为 rename(重命名，移动，删除)或change(修改)；watch函数返回一个fs.FSWatcher对象，使用此对象的close方法关闭watch监视</p>
+<h2 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a>文件流</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97.html" data-id="ck7twgwls001c7eoq2zne0a17" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/%E5%89%8D%E7%AB%AF%E5%88%B7%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前端刷题遇到的坑
+        
+      </div>
+    </a>
+  
+  
+    <a href="/js%E5%AD%97%E7%AC%A6%E4%B8%B2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js字符串</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E5%88%86%E4%BA%AB/">分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E6%9E%B6%E6%9E%84/">架构</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser-sync/" rel="tag">browser-sync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">js字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c/c++模块问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" rel="tag">博客园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" rel="tag">实时刷新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" rel="tag">百度统计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/apply-call-bind/" style="font-size: 10px;">apply, call, bind</a> <a href="/tags/apt/" style="font-size: 12.5px;">apt</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/browser-sync/" style="font-size: 10px;">browser-sync</a> <a href="/tags/event/" style="font-size: 10px;">event</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" style="font-size: 10px;">git关联远程分支</a> <a href="/tags/git%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">git笔记</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">js单一对象</a> <a href="/tags/js%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">js原型</a> <a href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">js字符串</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1/" style="font-size: 12.5px;">js对象</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" style="font-size: 10px;">js对象保护</a> <a href="/tags/js%E6%95%B0%E7%BB%84/" style="font-size: 10px;">js数组</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" style="font-size: 10px;">node c/c++模块问题</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 10px;">node命令行</a> <a href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">node文件模块</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" style="font-size: 10px;">npm包发布</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">事件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 17.5px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" style="font-size: 10px;">博客园</a> <a href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" style="font-size: 10px;">实时刷新</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" style="font-size: 10px;">百度统计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">webassembly向导--译</a>
+          </li>
+        
+          <li>
+            <a href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html">ssh别名登陆服务器</a>
+          </li>
+        
+          <li>
+            <a href="/fetch_%E7%BF%BB%E8%AF%91.html">fetch</a>
+          </li>
+        
+          <li>
+            <a href="/python-1%E5%9F%BA%E7%A1%80.html">python.1基础</a>
+          </li>
+        
+          <li>
+            <a href="/nodejsEventModule.html">nodejs事件模块</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018~2020 bingxl
+      <br> 
+      <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noopener">陕ICP备16006936号</a>
+      <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
