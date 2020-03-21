@@ -23,6 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+        ref: 'source'
     - run: npm install
     - run: node urlsGenerate.js
     - run: npx hexo generate
