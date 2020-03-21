@@ -29,7 +29,6 @@ jobs:
     - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
     - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
     - run: cd ./public
-    - run: git init && git config user.name bingxl && git config user.email "scarecrowlxb@qq.com"
-    - run: git add .
+    - run: git init && git add .
     - run: git commit -m'Update'
-    - run: git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+    - run: git push --force --quiet "https://bingxl:${{ GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:master
