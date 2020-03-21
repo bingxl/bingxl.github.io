@@ -31,4 +31,4 @@ jobs:
     - run: cd ./public
     - run: git init && git add .
     - run: git commit -m'Update'
-    - run: git push --force --quiet "https://bingxl:${{ GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:master
+    - run: git push --force --quiet "https://bingxl:${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:master
