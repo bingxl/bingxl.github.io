@@ -1,0 +1,45 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build hexo source to generate
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: node urlsGenerate.js
+    - run: npx hexo generate
+    - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
+    - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
+#     - run: cd ./public
+    - run: mkdir example && mv public ./example/
+    - name: publish:starters
+      uses: johno/actions-push-subdirectories@master
+      env:
+          API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          args: example bingxl bingxl.github.io
+#     - run: echo ${{ secrets.GH_TOKEN}}
+#     - run: git init
+#     - run: git config user.name bingxl && git config user.email "scarecrowlxb@qq.com"
+#     - run: git add .
+#     - run: git commit -m'Update'
+#     - run: git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:master
