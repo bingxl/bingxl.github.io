@@ -23,12 +23,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      # 构建
       - run: npm install
       - run: node urlsGenerate.js
       - run: npx hexo generate
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
 
+      # 上传构建目录到bingxl.github.io仓库
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
         env:
@@ -39,4 +41,13 @@ jobs:
           destination-repository-name: "bingxl.github.io"
           git-user-email: "scarecrowlxb@qq.com"
 
+       # 到服务器拉取 bingxl.github.io仓库
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ${{ secrets.WORK_DIR }} && git pull
 #     - run: git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:master
