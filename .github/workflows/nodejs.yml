@@ -29,13 +29,14 @@ jobs:
     - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
     - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
 #     - run: cd ./public
+    - run: mkdir example && mv -r public ./example
     - name: publish:starters
       uses: johno/actions-push-subdirectories@master
       env:
           API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          args: ./public bingxl bingxl.github.io
+          args: example bingxl bingxl.github.io
 #     - run: echo ${{ secrets.GH_TOKEN}}
 #     - run: git init
 #     - run: git config user.name bingxl && git config user.email "scarecrowlxb@qq.com"
