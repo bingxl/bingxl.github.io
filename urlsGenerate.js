@@ -1,10 +1,11 @@
 let fs = require('fs');
 let os = require('os');
-let site = 'https://www.bingxl.cn/';
+let site = 'https://bingxl.cn/';
 let data = site + os.EOL;
 fs.readdir('./source/_posts/', (err, files) => {
     files.forEach(item => {
-        data += site + item.replace('.md','') + '.html' + os.EOL;
+        const article = item.replace('.md', '');
+        data += site + encodeURI(article) + '.html' + os.EOL;
         // 
         
     })
