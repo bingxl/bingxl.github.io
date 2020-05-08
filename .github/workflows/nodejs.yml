@@ -38,9 +38,5 @@ jobs:
           destination-github-username: "bingxl"
           destination-repository-name: "bingxl.github.io"
           git-user-email: "scarecrowlxb@qq.com"
-#     - run: echo ${{ secrets.GH_TOKEN}}
-#     - run: git init
-#     - run: git config user.name bingxl && git config user.email "scarecrowlxb@qq.com"
-#     - run: git add .
-#     - run: git commit -m'Update'
+
 #     - run: git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:master
