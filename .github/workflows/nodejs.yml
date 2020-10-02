@@ -30,18 +30,7 @@ jobs:
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
 
-      - run: cd ./public
-      # - run: mkdir example && mv public ./example/
-      # - name: publish:starters
-      #   uses: johno/actions-push-subdirectories@master
-      #   env:
-      #       API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
-      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #       args: example bingxl bingxl.github.io
-      #     - run: echo ${{ secrets.GH_TOKEN}}
-      - run: git init
-      - run: git config user.name bingxl && git config user.email "scarecrowlxb@qq.com"
-      - run: git add .
-      - run: git commit -m'Update'
-      - run: git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:release
+      - run: ls
+      - run: cd ./public && git init && git config user.name bingxl && git config user.email "scarecrowlxb@qq.com" && git add . && git commit -m'Update'
+      - run: pwd
+      # - run: git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:release
