@@ -33,4 +33,4 @@ jobs:
       - run: ls
       - run: cd ./public && git init && git config user.name bingxl && git config user.email "scarecrowlxb@qq.com" && git add . && git commit -m'Update'
       - run: pwd
-      # - run: git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:release
+      - run: cd ./public && git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:release
