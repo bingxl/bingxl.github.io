@@ -20,11 +20,11 @@ date: 2020-05-09 10:15:55
 
 链表格式
 
-```
- function ListNode(val, next) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next)
- }
+```javascript
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
+}
 ```
 
 example:

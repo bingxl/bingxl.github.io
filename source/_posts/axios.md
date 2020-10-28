@@ -3,22 +3,25 @@ layout: post
 title: axios
 date: 2017-07-23 17:42:09
 tags:
-- 前端
-- js
-- axios
+  - 前端
+  - js
+  - axios
 ---
 
 # 特点/功能
-+ make XMLHttpRequests from browser  在浏览器环境里发送AJAX请求
-+ make http requests from nodejs   在nodejs里发送http请求
-+ supports the promise API 支持 promise(es6语法)
-+ intercept request and response 拦截请求和响应
-+ transform request and response data 转换请求和响应数据
-+ cancel requests   取消请求
-+ automatic transforms for JSON data    自动转换JSON数据
-+ client side support for protecting against xsrf   客户端支持防止 CSRF/XSRF
+
+- make XMLHttpRequests from browser 在浏览器环境里发送 AJAX 请求
+- make http requests from nodejs 在 nodejs 里发送 http 请求
+- supports the promise API 支持 promise(es6 语法)
+- intercept request and response 拦截请求和响应
+- transform request and response data 转换请求和响应数据
+- cancel requests 取消请求
+- automatic transforms for JSON data 自动转换 JSON 数据
+- client side support for protecting against xsrf 客户端支持防止 CSRF/XSRF
 <!-- more -->
+
 # 安装
+
 ```
 npm install axios --save-dev
 or
@@ -26,7 +29,8 @@ bower install axios
 ```
 
 # exmple
-```
+
+```javascript
 let config = {
     methods: 'post',//get,post,put,delete,patch
     url: '',
@@ -61,4 +65,3 @@ axios.all([get1(), get2()]).then(axios.spread(
 ```
 
 # 请求配置
-

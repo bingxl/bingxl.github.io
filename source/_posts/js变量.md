@@ -21,6 +21,8 @@ var a = 2; // 覆盖前面定义得a变量
 console.log(a);
 ```
 
+<!-- more -->
+
 ```javascript
 for (var i = 0; i < 2; i++) {
   setTimeout(() => console.log(i), 100); // 2 2, var声明得变量没有块级作用域，执行setTimeout函数时i已变为2
