@@ -35,13 +35,14 @@ jobs:
       - run: pwd
       - run: cd ./public && git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:release
 
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.ALI_USERNAME }}
-          password: ${{ secrets.ALI_PASSWORD }}
-          port: ${{ secrets.PORT }}
-          source: "./public/*"
-          target: "/var/www/bingxl.github.io/"
-          rm: true
+      # 因 github上也连不进服务器，所以注释上传包到服务器
+      # - name: copy file via ssh password
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.ALI_USERNAME }}
+      #     password: ${{ secrets.ALI_PASSWORD }}
+      #     port: ${{ secrets.PORT }}
+      #     source: "./public/*"
+      #     target: "/var/www/bingxl.github.io/"
+      #     rm: true

@@ -5,6 +5,10 @@
   "hexo": {
     "version": "6.0.0"
   },
+  "scripts": {
+    "build": "node urlsGenerate.js & hexo generate",
+    "scp": "scp -r ./public/* bingxl:/var/www/bingxl.github.io/"
+  },
   "dependencies": {
     "hexo": "^6.0.0",
     "hexo-generator-archive": "^1.0.0",
