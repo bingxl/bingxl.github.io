@@ -21,6 +21,6 @@
     "hexo-server": "^1.0.0"
   },
   "devDependencies": {
-    "hexo-migrator-rss": "^0.1.2"
+    "hexo-migrator-rss": "^1.1.0"
   }
 }
