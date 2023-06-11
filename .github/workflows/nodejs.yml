@@ -6,34 +6,40 @@ name: Node.js CI
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  build:
-    name: build hexo source to generate
-    runs-on: ubuntu-latest
-
+  pages:
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          submodules: recursive
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
 
       - run: npm install
-      - run: node urlsGenerate.js
-      - run: npx hexo generate
+      - name: Build
+        run: npm run build
+
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
 
-      - run: ls
-      - run: cd ./public && git init && git config user.name bingxl && git config user.email "scarecrowlxb@qq.com" && git add . && git commit -m'Update'
-      - run: pwd
-      - run: cd ./public && git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/bingxl/bingxl.github.io.git" master:release
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.GH_TOKEN}}
+          publish_dir: ./public
 
       # 因 github上也连不进服务器，所以注释上传包到服务器
       # - name: copy file via ssh password
