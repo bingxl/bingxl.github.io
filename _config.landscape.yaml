@@ -1,0 +1,48 @@
+# Header
+menu:
+  Home: /
+  Archives: /archives
+rss: /atom.xml
+banner: images/banner.jpg
+subtitle: bingxl 的博客笔记
+
+# Content
+excerpt_link: Read More
+fancybox: true
+recent_posts_limits: 5
+# Footer
+copyright: |-
+  <a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn">陕ICP备16006936号</a></br>
+  <script>
+  // 百度统计的代码
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?c8571965e360d47f868ec07ba22f3039";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+# Sidebar
+sidebar: right
+widgets:
+- category
+- tag
+- tagcloud
+- archive
+- recent_posts
+
+# Miscellaneous
+google_analytics: 	G-HMCZPDM2XJ
+favicon: /favicon.png
+twitter:
+
+# Header links
+# Each name must correspond to the icon name of Fork Awesome
+# https://forkaweso.me/Fork-Awesome/icons/
+links:
+ github: https://github.com/bingxl
+#  twitter: https://twitter.com/your_twitter_account
+#  telegram: https://t.me/your_telegram_account
