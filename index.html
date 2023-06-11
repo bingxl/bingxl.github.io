@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>稻草人-前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="关于前端、关于生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="稻草人-前端笔记">
+<meta property="og:url" content="http://bingxl.com/index.html">
+<meta property="og:site_name" content="稻草人-前端笔记">
+<meta property="og:description" content="关于前端、关于生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="bingxl">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">稻草人-前端笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关注前端</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingxl.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-webassembly向导--译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" class="article-date">
+  <time class="dt-published" datetime="2023-06-11T17:47:24.420Z" itemprop="datePublished">2023-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!--
+@title webAssembly 环境搭建
+@author bingxl
+@emaill scarecrowlxb@qq.com 
+ -->
+<h1 id="webAssembly-开发者指导"><a href="#webAssembly-开发者指导" class="headerlink" title="webAssembly 开发者指导"></a>webAssembly 开发者指导</h1><p>本页面提供一步一步的操作将一个简单的程序编译成webassembly</p>
+<h2 id="前提要求"><a href="#前提要求" class="headerlink" title="前提要求"></a>前提要求</h2><p>为了编译成webAssembly，需要提前安装一些工具：</p>
+<ul>
+<li>Git。在Linux和OSX下已自带了Git，在Windows下需要安装 <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">Git for Windows</a></li>
+<li>CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载<a target="_blank" rel="noopener" href="https://cmake.org/download">CMake installer</a>;</li>
+<li>编译工具。 在linux下安装<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/154402/install-gcc-on-ubuntu-12-04-lts">GCC</a>，在OSX下安装<a target="_blank" rel="noopener" href="https://itunes.apple.com/us/app/xcode/id497799835">Xcode</a>。在Windows下安装 <a href="://www.visualstudio.com/downloads/">Visual Studio 2015 Community with Update 3</a> 或更新的版本;</li>
+<li>Python2.7.x。在Linux和OSX下大部分都内置了Python2.7版本，没有的需要安装，Windows下需要自动下载安装；
+        
+          <p class="article-more-link">
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" data-id="clirpx76y0028h2oq0rc4gv6b" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-termux" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/termux.html" class="article-date">
+  <time class="dt-published" datetime="2022-03-10T01:31:54.000Z" itemprop="datePublished">2022-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/termux.html">termux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="termux"><a href="#termux" class="headerlink" title="termux"></a>termux</h2><p>termux是一款安卓端的linux模拟器，功能非常强大<br>下载： 从github伤下载最新版本 <a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/tags%EF%BC%9B">https://github.com/termux/termux-app/tags；</a></p>
+<h2 id="修改软件源"><a href="#修改软件源" class="headerlink" title="修改软件源"></a>修改软件源</h2><p>termux清华源</p>
+<h2 id="设置存储权限"><a href="#设置存储权限" class="headerlink" title="设置存储权限"></a>设置存储权限</h2><p>termux-setup-storage</p>
+<h2 id="安装ubuntu"><a href="#安装ubuntu" class="headerlink" title="安装ubuntu"></a>安装ubuntu</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install proot-distro</span><br><span class="line">proot-distro install ubuntu</span><br><span class="line">proot-distro login ubuntu</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置Ubuntu得apt源"><a href="#设置Ubuntu得apt源" class="headerlink" title="设置Ubuntu得apt源"></a>设置Ubuntu得apt源</h2><p>需要特别注意得一点是平板&#x2F;安卓上用的是ubuntu-ports源<br>先安装ca-certificates<br><code>apt install ca-certificates</code>,再更换apt源<br>参考 <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/</a></p>
+<h2 id="安装code-server"><a href="#安装code-server" class="headerlink" title="安装code-server"></a>安装code-server</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/termux.html" data-id="clirpx76w001yh2oq8tb6012l" data-title="termux" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vscode-online" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/vscode-online.html" class="article-date">
+  <time class="dt-published" datetime="2022-02-27T10:28:38.000Z" itemprop="datePublished">2022-02-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/vscode-online.html">vscode online</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="what-is-vscode-online"><a href="#what-is-vscode-online" class="headerlink" title="what is vscode online"></a>what is vscode online</h2><p>vscode onlie 是在服务器中搭建vscode环境，然后在任何带有浏览器的设备中通过浏览器使用vscode</p>
+<h2 id="requirements"><a href="#requirements" class="headerlink" title="requirements"></a>requirements</h2><p>一台具有公网ip云服务器，服务器最低配置是 内存:1GB, cpu: 2核</p>
+<h2 id="使用软件"><a href="#使用软件" class="headerlink" title="使用软件"></a>使用软件</h2><ul>
+<li>code-server</li>
+<li>chrome浏览器</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li><p>在服务器中安装 code-server， 具体步骤参考 <a target="_blank" rel="noopener" href="https://coder.com/docs/code-server/latest/install">https://coder.com/docs/code-server/latest/install</a>； 服务器上网络原因使用shell脚本安装时经常卡住，所以我是在本地下载上传到服务器安装，<a target="_blank" rel="noopener" href="https://github.com/coder/code-server/tags">下载地址</a></p>
+</li>
+<li><p>配置<br>配置文件位置 <code>~/.config/code-server/config.yaml</code> </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># port改为自己的端口</span></span><br><span class="line"><span class="attr">bind-addr:</span> <span class="number">0.0</span><span class="number">.0</span><span class="string">:port</span></span><br><span class="line"><span class="attr">auth:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">password:</span> <span class="string">改为自己的密码</span></span><br><span class="line"><span class="attr">cert:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务<br><code>code-server</code></p>
+</li>
+<li><p>从浏览器访问 <code>ip:port</code><br>界面截图如下：<br><img src="/images/vscode-online.png" alt="vscode online"></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/vscode-online.html" data-id="clirpx76x0025h2oq2rgnhklg" data-title="vscode online" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-js变量" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/js%E5%8F%98%E9%87%8F.html" class="article-date">
+  <time class="dt-published" datetime="2020-10-27T11:54:25.000Z" itemprop="datePublished">2020-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/js%E5%8F%98%E9%87%8F.html">js变量</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="es5-中得变量"><a href="#es5-中得变量" class="headerlink" title="es5 中得变量"></a>es5 中得变量</h2><p>es5 中变量使用<code>var</code>关键字声明，var 声明得关键字存在变量提升，没有块级作用域，可重复定义,后面定义得覆盖前面定义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// undefined，变量a在后面申明，发生了变量提升，但赋值没有提升，所以是 undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>; <span class="comment">// 覆盖前面定义得a变量</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%8F%98%E9%87%8F.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%8F%98%E9%87%8F.html" data-id="clirpx76c000kh2oqfga7ghhi" data-title="js变量" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="draft-leetcode-add-two-numbers" class="h-entry article article-type-draft" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/leetcode-add-two-numbers.html" class="article-date">
+  <time class="dt-published" datetime="2020-05-09T10:15:55.000Z" itemprop="datePublished">2020-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>►<a class="article-category-link" href="/categories/leetcode/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/leetcode-add-two-numbers.html">leetcode-add-two-numbers</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="leetcode-两数相加问题描述"><a href="#leetcode-两数相加问题描述" class="headerlink" title="leetcode 两数相加问题描述"></a>leetcode 两数相加问题描述</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/add-two-numbers">原问题链接 https://leetcode.com/problems/add-two-numbers</a></p>
+<p>问题描述: 输入两个非空链表 l1,l2, 链表节点为<code>&#123;val:&#39;&#39;, next: node&#125;</code>, 链表每个节点的 val 都在 0~9 之间. l1,l2 代表两个数, 链表的第一个节点存储对应数的个位数,第二个节点存储对应数的十位数依次类推.</p>
+<p>任务: 计算 l1, l2 代表的两个数之和,然后将和转换成链表表示, 并输出链表.</p>
+<p>链表格式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ListNode</span>(<span class="params">val, next</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">val</span> = val === <span class="literal">undefined</span> ? <span class="number">0</span> : val;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">next</span> = next === <span class="literal">undefined</span> ? <span class="literal">null</span> : next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: l1 (2 -&gt; 4 -&gt; 3), l2 (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出: 7 -&gt; 0 -&gt; 8</span><br><span class="line">解释: 342 + 465 = 807</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/leetcode-add-two-numbers.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/leetcode-add-two-numbers.html" data-id="clirpx76m0018h2oq6qab7wp1" data-title="leetcode-add-two-numbers" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ssh别名登陆服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html" class="article-date">
+  <time class="dt-published" datetime="2019-04-12T15:22:08.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html">ssh别名登陆服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>做开发时常常需要登陆远程服务器执行一些操作，以前每次都是使用 ssh userName@ip 来登陆，然而 ip 地址很难记，每次都需要查找下，导致效率太低下，使用 ssh 别名登陆后可以简化为 ssh userName@aliasName 登陆，方便记忆，操作也简化了，而且 aliasName 还可以用于 scp 之类的操作中</p>
+        
+          <p class="article-more-link">
+            <a href="/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/ssh%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8.html" data-id="clirpx76v001vh2oqai65h9zz" data-title="ssh别名登陆服务器" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-fetch_翻译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/fetch_%E7%BF%BB%E8%AF%91.html" class="article-date">
+  <time class="dt-published" datetime="2018-10-18T18:34:03.000Z" itemprop="datePublished">2018-10-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/fetch_%E7%BF%BB%E8%AF%91.html">fetch</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="fetch-概览"><a href="#fetch-概览" class="headerlink" title="fetch 概览"></a>fetch 概览</h1><blockquote>
+<p>本文翻译自 devdocs 文档中的 <a target="_blank" rel="noopener" href="https://devdocs.io/dom/fetch_api/using_fetch">Fetch API: Using Fetch</a> 一节</p>
+</blockquote>
+<p><code>Fetch API</code> 提供了访问和操作部分 HTTP 管道的 js 接口, 比如 request(请求)和 response(响应). 同时也提供了一个使用异步方法简便获取网络资源的全局函数 <code>fetch()</code>.</p>
+        
+          <p class="article-more-link">
+            <a href="/fetch_%E7%BF%BB%E8%AF%91.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/fetch_%E7%BF%BB%E8%AF%91.html" data-id="clirpx766000bh2oq76fnch9t" data-title="fetch" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python-1基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/python-1%E5%9F%BA%E7%A1%80.html" class="article-date">
+  <time class="dt-published" datetime="2017-12-07T10:42:24.000Z" itemprop="datePublished">2017-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/python-1%E5%9F%BA%E7%A1%80.html">python.1基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="python-代码转换成二进制"><a href="#python-代码转换成二进制" class="headerlink" title="python 代码转换成二进制"></a>python 代码转换成二进制</h2><p>python 代码的执行过程是：源代码-》解析器-》字节码-》解析器-》机器码，pyc 和 pyo 文件是以字节码的形式存在，可以加速代码加载速度，两者不一样的地方在于 pyo 文件是经过优化的字节码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成pyc和pyo文件的方式</span></span><br><span class="line">python -m py_compile file.py  <span class="comment">#将file.py转化成pyc 文件</span></span><br><span class="line">python -O -m py_compile file.py  <span class="comment">#将file.py转化成pyo文件</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/python-1%E5%9F%BA%E7%A1%80.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/python-1%E5%9F%BA%E7%A1%80.html" data-id="clirpx76u001sh2oqcynu1wr2" data-title="python.1基础" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nodejsEventModule" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/nodejsEventModule.html" class="article-date">
+  <time class="dt-published" datetime="2017-11-07T19:35:29.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web/">web</a>►<a class="article-category-link" href="/categories/web/nodejs/">nodejs</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/nodejsEventModule.html">nodejs事件模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>nodejs 里所有事件类型基本都是由 events 模块开提供, js 是异步执行的,在很多情况下需要同步执行, 这时可以使用 events 模块来实现同步</p>
+<p>event 模块主要是 EventEmitter 类, 使用 event.EventEmitter 类来实例化一个事件对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> event = <span class="built_in">require</span>(<span class="string">&quot;events&quot;</span>); <span class="comment">// 引入events模块</span></span><br><span class="line"><span class="keyword">let</span> emit = <span class="keyword">new</span> event.<span class="title class_">EventEmitter</span>(); <span class="comment">// 实例化一个events对象</span></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/nodejsEventModule.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/nodejsEventModule.html" data-id="clirpx76p001eh2oqbjdi3kvd" data-title="nodejs事件模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-js对象之实例工厂" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html" class="article-date">
+  <time class="dt-published" datetime="2017-09-03T18:36:12.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html">js对象之实例工厂</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="new相关"><a href="#new相关" class="headerlink" title="new相关"></a>new相关</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let Person = function (name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;;</span><br><span class="line">let lihua = new Person(&#x27;lihua&#x27;); // lihua是Person对象的一个实例</span><br></pre></td></tr></table></figure>
+<p>new操作符有执行过程：</p>
+<ul>
+<li>设置行为： 创建一个新对象，其原型为 Person.prototype</li>
+<li>设置数据： Person接受刚上一步创建的对象作为隐式参数 this，设置新创对象的属性值this.name</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AE%9E%E4%BE%8B%E5%B7%A5%E5%8E%82.html" data-id="clirpx76f000sh2oq8y6lfbfg" data-title="js对象之实例工厂" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/javascript/">javascript</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E5%88%86%E4%BA%AB/">分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E6%9E%B6%E6%9E%84/">架构</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/js/">js</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser-sync/" rel="tag">browser-sync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">js字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c&#x2F;c++模块问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" rel="tag">博客园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" rel="tag">实时刷新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" rel="tag">百度统计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/apply-call-bind/" style="font-size: 10px;">apply, call, bind</a> <a href="/tags/apt/" style="font-size: 12px;">apt</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/browser-sync/" style="font-size: 10px;">browser-sync</a> <a href="/tags/event/" style="font-size: 10px;">event</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" style="font-size: 10px;">git关联远程分支</a> <a href="/tags/git%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">git笔记</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 18px;">js</a> <a href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">js单一对象</a> <a href="/tags/js%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">js原型</a> <a href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">js字符串</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1/" style="font-size: 12px;">js对象</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" style="font-size: 10px;">js对象保护</a> <a href="/tags/js%E6%95%B0%E7%BB%84/" style="font-size: 10px;">js数组</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node/" style="font-size: 14px;">node</a> <a href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" style="font-size: 10px;">node c/c++模块问题</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 10px;">node命令行</a> <a href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">node文件模块</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" style="font-size: 10px;">npm包发布</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">事件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 16px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" style="font-size: 10px;">博客园</a> <a href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" style="font-size: 10px;">实时刷新</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" style="font-size: 10px;">百度统计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/termux.html">termux</a>
+          </li>
+        
+          <li>
+            <a href="/vscode-online.html">vscode online</a>
+          </li>
+        
+          <li>
+            <a href="/js%E5%8F%98%E9%87%8F.html">js变量</a>
+          </li>
+        
+          <li>
+            <a href="/leetcode-add-two-numbers.html">leetcode-add-two-numbers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 bingxl<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

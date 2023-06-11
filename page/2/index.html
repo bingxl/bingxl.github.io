@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>稻草人-前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="关于前端、关于生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="稻草人-前端笔记">
+<meta property="og:url" content="http://bingxl.com/page/2/index.html">
+<meta property="og:site_name" content="稻草人-前端笔记">
+<meta property="og:description" content="关于前端、关于生活">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="bingxl">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">稻草人-前端笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">关注前端</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingxl.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-js对象之对象间的原型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html" class="article-date">
+  <time class="dt-published" datetime="2017-09-03T18:35:58.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html">js对象之对象间的原型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>原型用来描述对象之间的继承关系。每个对象都有原型，通过[[prototype]]这个内部属性描述。对象会继承其原型的所有属性和方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let obj1 = &#123;</span><br><span class="line">    name: &#x27;obj1&#x27;,</span><br><span class="line">    desc: function() &#123;</span><br><span class="line">        console.log(&quot;obj name is:&quot;, this.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let obj2 = Object.create(obj1); //通过obj1创建对象obj2， obj2的原型是obj1</span><br><span class="line">obj2.name = &#x27;obj2&#x27;;</span><br><span class="line">obj2.desc(); // obj2 继承了obj2的原型 obj1中的方法</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%AF%B9%E8%B1%A1%E9%97%B4%E7%9A%84%E5%8E%9F%E5%9E%8B.html" data-id="clirpx76g000th2oq5yj9bjrx" data-title="js对象之对象间的原型" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="js对象之对象间的原型-js对象之构造函数之间的继承" class="h-entry article article-type-js对象之对象间的原型" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF.html" class="article-date">
+  <time class="dt-published" datetime="2017-09-03T18:35:17.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF.html">js对象之构造函数之间的继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF.html" data-id="clirpx76i000wh2oq0tph34xz" data-title="js对象之构造函数之间的继承" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-js对象之单一对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html" class="article-date">
+  <time class="dt-published" datetime="2017-09-03T18:33:55.000Z" itemprop="datePublished">2017-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html">js对象之单一对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>js所有对象都是从字符串到值得映射，对象的属性分为三种：数据属性(最常见)、访问器(设置属性的的获取和设置)、内置属性(在语言规范中定义的js无法直接访问)。</p>
+<h2 id="访问属性"><a href="#访问属性" class="headerlink" title="访问属性"></a>访问属性</h2><p>访问属性有两种方法，点操作符和中括号操作符。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;test: &#x27;hello&#x27;&#125;;</span><br><span class="line">obj.test;</span><br><span class="line">let keyName = &#x27;test&#x27;;</span><br><span class="line">obj[&#x27;test&#x27;] =+ obj.test == obj[keyName] </span><br></pre></td></tr></table></figure>
+<p>使用点操作符比较方便顺手，使用中括号可以通过计算变量后再得到属性；</p>
+        
+          <p class="article-more-link">
+            <a href="/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/js%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1.html" data-id="clirpx76e000ph2oq6c4uhk9j" data-title="js对象之单一对象" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-git笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/git%E7%AC%94%E8%AE%B0.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-31T17:38:01.000Z" itemprop="datePublished">2017-08-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/git%E7%AC%94%E8%AE%B0.html">git笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>使用git步骤</p>
+<ol>
+<li><p>安装软件后打开gitbash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot;</span><br><span class="line">git config --global user.email &quot;yourname@example.com&quot;</span><br><span class="line"></span><br><span class="line">git init</span><br><span class="line">git add &lt;hello.txt&gt;  # 把所有要提交的文件修改放到暂存区</span><br><span class="line">git commit -m &#x27;add a file&#x27; # 把暂存区的所有内容提交到当前分支</span><br><span class="line">git status #掌握工作区状态</span><br><span class="line">git diff #查看文件修改内容</span><br><span class="line">git log #查看提交历史</span><br><span class="line">	git log --pretty=oneline</span><br><span class="line">git reset --hard HEAD^ #回退到上一个版本</span><br><span class="line">	HEAD^^(上上版本),HEAD~100(往上100个版本)</span><br><span class="line">	commit id(版本号) 可回到指定版本</span><br><span class="line">git reflog #查看历史命令</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/git%E7%AC%94%E8%AE%B0.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/git%E7%AC%94%E8%AE%B0.html" data-id="clirpx769000gh2oq87ao1hhb" data-title="git笔记" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-git克隆" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/git%E5%85%8B%E9%9A%86.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-31T16:51:06.000Z" itemprop="datePublished">2017-08-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/git%E5%85%8B%E9%9A%86.html">git克隆</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>git 支持多种协议：本地协议，ssh 协议，git 协议，http，https 协议。</p>
+<p>当我关联远程分支时使用 http 或 https 协议则每次提交代码都需要输入用户名和密码，所以更换为 git 协议。</p>
+<p>查看使用的传输协议:</p>
+        
+          <p class="article-more-link">
+            <a href="/git%E5%85%8B%E9%9A%86.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/git%E5%85%8B%E9%9A%86.html" data-id="clirpx767000ch2oq5xi4ga22" data-title="git克隆" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-node中c和c-模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-26T11:19:05.000Z" itemprop="datePublished">2017-08-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html">node中c和c++模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!-- version 1.0.0 -->
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>node 使用 c++插件时需要使用 node-gyp 包，node-gyp 把 c++源码编译为二进制文件，js 在调用二进制文件，编译后的二进制文件模块调用就和 js 的模块调用一样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g node-gyp</span><br></pre></td></tr></table></figure>
+
+<p>除了 node-gyp 还需要安装其他准备工具。</p>
+        
+          <p class="article-more-link">
+            <a href="/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html" data-id="clirpx76q001gh2oqgwssbvju" data-title="node中c和c++模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c&#x2F;c++模块问题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-travis-ci构建与部署" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/travis-ci%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-24T10:36:59.000Z" itemprop="datePublished">2017-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/travis-ci%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2.html">travis-ci构建与部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>参考网上的一篇文章，实现了项目提交后再travics-cl上自动构建部署 <a target="_blank" rel="noopener" href="http://blog.csdn.net/woblog/article/details/51319364">链接</a></p>
+<p>travis-cl 是在线持续集成工具，对于项目开发时可以本地编写源码，推到github上时出发travis-cl，Travis-cl进行后续操作，包括代码测试、代码压缩打包、代码部署等操作</p>
+<p>对于传统的开发流程，编写源码后再本地进行代码测试、编译、压缩、打包等操作，得到最终代码后再部署到服务器上。需要花费大量的时间特别是测试部分。使用持续集成后只需要把源码推到github上，后续所有工作都自动完成。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/travis-ci%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2.html" data-id="clirpx76x0022h2oqaw9ibizd" data-title="travis-ci构建与部署" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-git命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/git%E5%91%BD%E4%BB%A4.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-23T22:41:19.000Z" itemprop="datePublished">2017-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/git%E5%91%BD%E4%BB%A4.html">git命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="git里的对象"><a href="#git里的对象" class="headerlink" title="git里的对象"></a>git里的对象</h2><p>共有四种对象，分别是blob、tree、commit、tag。每个对象包含了类型、大小和内容</p>
+<h3 id="blob"><a href="#blob" class="headerlink" title="blob"></a>blob</h3><p>blob对象用来存储文件数据，通常是一个文件，一个blob对象的内容如下：</p>
+<p>blob | size |<br>——————————————<br>文件内容</p>
+<p>查看blob对象里的内容： git show <SHA1>  sha1是文件经过sha1处理过的标识符</p>
+        
+          <p class="article-more-link">
+            <a href="/git%E5%91%BD%E4%BB%A4.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/git%E5%91%BD%E4%BB%A4.html" data-id="clirpx768000eh2oq5zood9t7" data-title="git命令" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-npm工具与发布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/npm%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%8F%91%E5%B8%83.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-23T12:12:05.000Z" itemprop="datePublished">2017-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/npm%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%8F%91%E5%B8%83.html">npm工具与发布</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="npm-工具的制作"><a href="#npm-工具的制作" class="headerlink" title="npm 工具的制作"></a>npm 工具的制作</h2><p>初始化一个目录，然后在目录里面运行 <code>npm init</code> 获取 package.json 文件</p>
+<p>在 package.json 文件里面添加 bin，author，maintainers 字段，</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;bin&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hello&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hello&quot;</span> <span class="comment">// npm会创建软连接到npm执行目录下，软连接名为hello ，执行的文件为当前目录下的hello文件，可更改</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.1&quot;</span><span class="punctuation">,</span> <span class="comment">// 通过npm version major | minor | patch | premajor | preminor | prepatch | prerelease | from-git 更新版本号</span></span><br><span class="line"><span class="attr">&quot;maintainers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span>  <span class="comment">// 包维护者列表，通过此字段值来进行权限认证</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bingxl&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;email&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2282152858@qq.com&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;bingxl&quot;</span><span class="punctuation">,</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/npm%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%8F%91%E5%B8%83.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/npm%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%8F%91%E5%B8%83.html" data-id="clirpx76s001nh2oq25yh4e3m" data-title="npm工具与发布" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-apt命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/apt%E5%91%BD%E4%BB%A4.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-23T08:28:48.000Z" itemprop="datePublished">2017-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/apt%E5%91%BD%E4%BB%A4.html">apt命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="apt简介"><a href="#apt简介" class="headerlink" title="apt简介"></a>apt简介</h2><p>　　高级包装工具（Advanced Packaging Tools）是Debian及其衍生发行版（如：ubuntu）的软件包管理器。APT可以自动下载，配置，安装二进制或者源代码格式的软件包。</p>
+<p>　　apt-get命令一般需要root权限执行，所以一般跟着sudo命令。与&#x2F;etc&#x2F;apt&#x2F;sources.list中匹配。</p>
+<h2 id="apt常用命令集合"><a href="#apt常用命令集合" class="headerlink" title="apt常用命令集合"></a>apt常用命令集合</h2>
+        
+          <p class="article-more-link">
+            <a href="/apt%E5%91%BD%E4%BB%A4.html#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/apt%E5%91%BD%E4%BB%A4.html" data-id="clirpx7620007h2oqenmv1bw6" data-title="apt命令" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/javascript/">javascript</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E5%88%86%E4%BA%AB/">分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E6%9E%B6%E6%9E%84/">架构</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/js/">js</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser-sync/" rel="tag">browser-sync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">js字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c&#x2F;c++模块问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" rel="tag">博客园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" rel="tag">实时刷新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" rel="tag">百度统计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/apply-call-bind/" style="font-size: 10px;">apply, call, bind</a> <a href="/tags/apt/" style="font-size: 12px;">apt</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/browser-sync/" style="font-size: 10px;">browser-sync</a> <a href="/tags/event/" style="font-size: 10px;">event</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" style="font-size: 10px;">git关联远程分支</a> <a href="/tags/git%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">git笔记</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 18px;">js</a> <a href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">js单一对象</a> <a href="/tags/js%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">js原型</a> <a href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">js字符串</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1/" style="font-size: 12px;">js对象</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" style="font-size: 10px;">js对象保护</a> <a href="/tags/js%E6%95%B0%E7%BB%84/" style="font-size: 10px;">js数组</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node/" style="font-size: 14px;">node</a> <a href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" style="font-size: 10px;">node c/c++模块问题</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 10px;">node命令行</a> <a href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">node文件模块</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" style="font-size: 10px;">npm包发布</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">事件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 16px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" style="font-size: 10px;">博客园</a> <a href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" style="font-size: 10px;">实时刷新</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" style="font-size: 10px;">百度统计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/termux.html">termux</a>
+          </li>
+        
+          <li>
+            <a href="/vscode-online.html">vscode online</a>
+          </li>
+        
+          <li>
+            <a href="/js%E5%8F%98%E9%87%8F.html">js变量</a>
+          </li>
+        
+          <li>
+            <a href="/leetcode-add-two-numbers.html">leetcode-add-two-numbers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 bingxl<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
