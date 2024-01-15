@@ -29,12 +29,12 @@ jobs:
           key: ${{ runner.OS }}-pnpm-cache
           restore-keys: |
             ${{ runner.OS }}-pnpm-cache
-            
+
       - name: 初始化pnpm
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
-      - run: npm install
+          
       - name: install & build
         run: |
           pnpm install
