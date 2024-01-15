@@ -39,10 +39,11 @@ jobs:
         run: |
           pnpm install
           pnpm build
-      - run: ls public/
+          ls public/
+  
       # 构建完后先上传到服务器
       - name: scp file
-        uses: appleboy/scp-action
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.ALI_USERNAME }}
@@ -55,7 +56,7 @@ jobs:
 
       # 构建完后先上传到服务器
       - name: scp file with trip_components
-        uses: appleboy/scp-action
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.ALI_USERNAME }}
