@@ -24,7 +24,7 @@ jobs:
       - name: Active PNPM
         run: corepack enable & corepack prepare pnpm@latest --activate
       - name: Cache PNPM dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.OS }}-pnpm-cache
@@ -39,7 +39,6 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{secrets.GH_TOKEN}}
           publish_dir: ./public
 
       # 因 github上也连不进服务器，所以注释上传包到服务器
