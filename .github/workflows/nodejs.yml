@@ -16,13 +16,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      - name: cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-pnpm-cache
+          restore-keys: |
+            ${{ runner.OS }}-pnpm-cache
+            
       - name: 初始化pnpm
         run: |
           corepack enable
