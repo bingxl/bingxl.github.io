@@ -34,22 +34,13 @@ jobs:
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
-          
+
       - name: install & build
         run: |
           pnpm install
           pnpm build
 
-      - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
-      - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-
-      # 因 github上也连不进服务器，所以注释上传包到服务器
+      # 构建完后先上传到服务器
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
@@ -61,3 +52,14 @@ jobs:
           target: "/var/www/bingxl.github.io/"
           strip_components: 1
           rm: true
+
+      - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
+      - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+
+   
