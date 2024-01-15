@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HMCZPDM2XJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HMCZPDM2XJ');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>node中c和c++模块 | 稻草人-前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="准备工作node 使用 c++插件时需要使用 node-gyp 包，node-gyp 把 c++源码编译为二进制文件，js 在调用二进制文件，编译后的二进制文件模块调用就和 js 的模块调用一样。 1npm install -g node-gyp  除了 node-gyp 还需要安装其他准备工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node中c和c++模块">
+<meta property="og:url" content="http://bingxl.com/2017/08/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html">
+<meta property="og:site_name" content="稻草人-前端笔记">
+<meta property="og:description" content="准备工作node 使用 c++插件时需要使用 node-gyp 包，node-gyp 把 c++源码编译为二进制文件，js 在调用二进制文件，编译后的二进制文件模块调用就和 js 的模块调用一样。 1npm install -g node-gyp  除了 node-gyp 还需要安装其他准备工具。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-26T11:19:05.000Z">
+<meta property="article:modified_time" content="2024-01-15T14:26:57.671Z">
+<meta property="article:author" content="bingxl">
+<meta property="article:tag" content="node">
+<meta property="article:tag" content="node c&#x2F;c++模块问题">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css">
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">稻草人-前端笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">bingxl 的博客笔记</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/bingxl"><span class="fa fa-github"></span></a>
+          
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bingxl.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-node中c和c-模块" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2017/08/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html" class="article-date">
+  <time class="dt-published" datetime="2017-08-26T11:19:05.000Z" itemprop="datePublished">2017-08-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      node中c和c++模块
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!-- version 1.0.0 -->
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>node 使用 c++插件时需要使用 node-gyp 包，node-gyp 把 c++源码编译为二进制文件，js 在调用二进制文件，编译后的二进制文件模块调用就和 js 的模块调用一样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g node-gyp</span><br></pre></td></tr></table></figure>
+
+<p>除了 node-gyp 还需要安装其他准备工具。</p>
+<span id="more"></span>
+
+<p><strong>类 Unix 下的准备工具</strong><br>在类 Unix 下只需在安装 g++工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install g++ ;</span><br><span class="line">// or</span><br><span class="line">sudo yum install g++</span><br></pre></td></tr></table></figure>
+
+<p>因为在学校里我把 apt-get 配置为学校的源，回来后用不了学校的源(貌似只能在校园网的环境下使用)，然后我再修改为其他源时只更改了地址，结果一直安装不上，，，最后的最后才发现我修改的 apt 源有问题，不仅需要修改地址，还要看下后面 trusty,precise 还是其它的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 之前的是：</span><br><span class="line">deb http://**.xidian.edu.cn/ubuntu/ precise main xxxxxxxxxxxxxx</span><br><span class="line"></span><br><span class="line">// 修改时只改了地址,安装时就只会出错</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ precise main xxxxxxxxxxxxxxxx</span><br><span class="line"></span><br><span class="line">// 正确的是</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty main xxxxxxxxxxxxxxxxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows 下准备工具</strong><br>在 Windows 下需要安装 python 和 visualC++ ,python 在执行 configure 命令时调用，vcbuild 在编译时使用<br>python 安装 2.7 版本的</p>
+<p>visual C++实在是太大了，所以网上有另外一种解决方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 以管理员的身份运行   找到cmd，右键，以管理员身份运行；运行此命令后会安装python2.7 和编译工具</span><br><span class="line">npm install --global --production windows-build-tools</span><br><span class="line">npm update</span><br></pre></td></tr></table></figure>
+
+<h2 id="编写-C-模块"><a href="#编写-C-模块" class="headerlink" title="编写 C++模块"></a>编写 C++模块</h2><p>因为我对 C++也不熟悉，所以从官网上拿个例子下来。存为 addon.cpp 文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;node.h&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> demo &#123;</span><br><span class="line"><span class="keyword">using</span> v8::FunctionCallbackInfo;</span><br><span class="line"><span class="keyword">using</span> v8::Isolate;</span><br><span class="line"><span class="keyword">using</span> v8::Local;</span><br><span class="line"><span class="keyword">using</span> v8::Object;</span><br><span class="line"><span class="keyword">using</span> v8::String;</span><br><span class="line"><span class="keyword">using</span> v8::Value;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Method</span><span class="params">(<span class="type">const</span> FunctionCallbackInfo&lt;Value&gt;&amp; args)</span> </span>&#123; <span class="comment">// Method方法，使用const FunctionCallbackInfo&lt;Value&gt;&amp; args接受函数参数</span></span><br><span class="line">    Isolate* isolate = args.<span class="built_in">GetIsolate</span>();</span><br><span class="line">    args.<span class="built_in">GetReturnValue</span>().<span class="built_in">Set</span>(String::<span class="built_in">NewFromUtf8</span>(isolate, <span class="string">&quot;world&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(Local&lt;Object&gt; exports)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">NODE_SET_METHOD</span>(exports, <span class="string">&quot;hello&quot;</span>, Method); <span class="comment">// 导出模块的hello属性，hello属性指向 Method方法 类似js里的 &#123;hello: function Method()&#123;&#125;&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">NODE_MODULE</span>(addon, init) <span class="comment">// 注意这里没有分号结尾 导出模块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置与编译"><a href="#配置与编译" class="headerlink" title="配置与编译"></a>配置与编译</h2><p>node-gyp 配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x27;targets&#x27;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &#x27;target_name&#x27;: &#x27;addon&#x27;, // 编译后为addon.node文件</span><br><span class="line">            &#x27;sources&#x27;: [&#x27;./addon.cc&#x27;] // 需要编译的源码</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>node-gyp configure 命令会在当前项目下生成项目文件(供编译时使用)，node-gyp build 命令调用编译工具进行编译，最终得到一个 node 类型文件，该文件在 build&#x2F;Release 下，在这里生成的是 addon.node 文件</p>
+<h2 id="引用模块"><a href="#引用模块" class="headerlink" title="引用模块"></a>引用模块</h2><p>新建 test.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> addon = <span class="built_in">require</span>(<span class="string">&quot;./build/Release/addon.node&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(addon.<span class="title function_">hello</span>()); <span class="comment">// &#x27;world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="node-gyp-命令"><a href="#node-gyp-命令" class="headerlink" title="node-gyp 命令"></a>node-gyp 命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>install</td>
+<td>安装开发文件，针对特定版本的 node</td>
+</tr>
+<tr>
+<td>list</td>
+<td>当前安装的工具列表</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>移除 node 特定版本的开发者文件</td>
+</tr>
+<tr>
+<td>clean</td>
+<td>移除所有用 configure 和 build 命令生成的文件</td>
+</tr>
+<tr>
+<td>configure</td>
+<td>为当前模块生成编译配置信息等</td>
+</tr>
+<tr>
+<td>build</td>
+<td>编译当前模块</td>
+</tr>
+<tr>
+<td>rebuild</td>
+<td>重新配置编译当前模块 相当于 clean ，configure， build 的组合</td>
+</tr>
+</tbody></table>
+<p>c++更多示例请看<a target="_blank" rel="noopener" href="http://nodejs.cn/api/addons.html">官网 c&#x2F;c++插件</a> 或者<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1nuKx66t">百度网盘 pdf 版本</a></p>
+<p>文档里提供了函数的参数、回调、对象工厂、函数工厂、包装 c++对象、包装对象的工厂、传递包装的对象等列子。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/2017/08/node%E4%B8%ADc%E5%92%8Cc-%E6%A8%A1%E5%9D%97.html" data-id="clrf0r17u0027inp11wiic3ze" data-title="node中c和c++模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c&#x2F;c++模块问题</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/git%E5%85%8B%E9%9A%86.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          git克隆
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/travis-ci%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">travis-ci构建与部署</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/javascript/">javascript</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/H5/">H5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E5%88%86%E4%BA%AB/">分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/%E5%89%8D%E7%AB%AF/%E6%9E%B6%E6%9E%84/">架构</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/js/">js</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/" rel="tag">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply-call-bind/" rel="tag">apply, call, bind</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser-sync/" rel="tag">browser-sync</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/event/" rel="tag">event</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fetch/" rel="tag">fetch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" rel="tag">git关联远程分支</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E7%AC%94%E8%AE%B0/" rel="tag">git笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" rel="tag">js单一对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%8E%9F%E5%9E%8B/" rel="tag">js原型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">js字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1/" rel="tag">js对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" rel="tag">js对象保护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%95%B0%E7%BB%84/" rel="tag">js数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" rel="tag">node c&#x2F;c++模块问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">node命令行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" rel="tag">node文件模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" rel="tag">npm包发布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" rel="tag">博客园</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" rel="tag">实时刷新</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" rel="tag">百度统计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/H5/" style="font-size: 10px;">H5</a> <a href="/tags/apply-call-bind/" style="font-size: 10px;">apply, call, bind</a> <a href="/tags/apt/" style="font-size: 12px;">apt</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/browser-sync/" style="font-size: 10px;">browser-sync</a> <a href="/tags/event/" style="font-size: 10px;">event</a> <a href="/tags/fetch/" style="font-size: 10px;">fetch</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/git%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" style="font-size: 10px;">git关联远程分支</a> <a href="/tags/git%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">git笔记</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 18px;">js</a> <a href="/tags/js%E5%8D%95%E4%B8%80%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">js单一对象</a> <a href="/tags/js%E5%8E%9F%E5%9E%8B/" style="font-size: 10px;">js原型</a> <a href="/tags/js%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">js字符串</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1/" style="font-size: 12px;">js对象</a> <a href="/tags/js%E5%AF%B9%E8%B1%A1%E4%BF%9D%E6%8A%A4/" style="font-size: 10px;">js对象保护</a> <a href="/tags/js%E6%95%B0%E7%BB%84/" style="font-size: 10px;">js数组</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/node/" style="font-size: 14px;">node</a> <a href="/tags/node-c-c-%E6%A8%A1%E5%9D%97%E9%97%AE%E9%A2%98/" style="font-size: 10px;">node c/c++模块问题</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/node%E5%91%BD%E4%BB%A4%E8%A1%8C/" style="font-size: 10px;">node命令行</a> <a href="/tags/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">node文件模块</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm%E5%8C%85%E5%8F%91%E5%B8%83/" style="font-size: 10px;">npm包发布</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E4%BA%8B%E4%BB%B6/" style="font-size: 10px;">事件</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 16px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD/" style="font-size: 10px;">博客园</a> <a href="/tags/%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0/" style="font-size: 10px;">实时刷新</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/" style="font-size: 10px;">百度统计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/termux.html">termux</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/vscode-online.html">vscode online</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/js%E5%8F%98%E9%87%8F.html">js变量</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/leetcode-add-two-numbers.html">leetcode-add-two-numbers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        <a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn">陕ICP备16006936号</a></br>
+<script>
+// 百度统计的代码
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c8571965e360d47f868ec07ba22f3039";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+      
+      &copy; 2024 bingxl<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
