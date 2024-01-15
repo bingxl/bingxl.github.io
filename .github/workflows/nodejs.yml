@@ -39,7 +39,6 @@ jobs:
         run: |
           pnpm install
           pnpm build
-          ls public/
   
       # 构建完后先上传到服务器
       - name: scp file
@@ -51,21 +50,9 @@ jobs:
           port: ${{ secrets.PORT }}
           source: public/*
           target: /var/www/bingxl.github.io/
-          # strip_components: 1
-          rm: true
-
-      # 构建完后先上传到服务器
-      - name: scp file with trip_components
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.ALI_USERNAME }}
-          password: ${{ secrets.ALI_PASSWORD }}
-          port: ${{ secrets.PORT }}
-          source: public/*
-          target: /var/www/scp_file/
           strip_components: 1
           rm: true
+
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
 
