@@ -15,23 +15,24 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          submodules: recursive
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Active PNPM
-        run: corepack enable & corepack prepare pnpm@latest --activate
-      - name: Cache PNPM dependencies
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-pnpm-cache
-          restore-keys: ${{ runner.OS }}-pnpm-cache
-      - run: pnpm install
-      - name: Build
-        run: pnpm run build
+      - name: 初始化pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --active
+      - run: npm install
+      - name: install & build
+        run: |
+          pnpm install
+          pnpm build
 
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=bingxl.cn&token=TXPxWXjnHVPzbF7b"
       - run: curl -H 'Content-Type:text/plain' --data-binary @source/urls.txt "http://data.zz.baidu.com/urls?site=https://www.bingxl.cn&token=TXPxWXjnHVPzbF7b"
@@ -39,6 +40,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          github_token: ${{secrets.GH_TOKEN}}
           publish_dir: ./public
 
       # 因 github上也连不进服务器，所以注释上传包到服务器

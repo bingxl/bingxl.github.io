@@ -81,4 +81,4 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/bingxl/bingxl.github.io
-  branch: master
+  branch: main
