@@ -24,8 +24,8 @@
 <meta property="og:site_name" content="稻草人-前端笔记">
 <meta property="og:description" content="webAssembly 开发者指导本页面提供一步一步的操作将一个简单的程序编译成webassembly 前提要求为了编译成webAssembly，需要提前安装一些工具：  Git。在Linux和OSX下已自带了Git，在Windows下需要安装 Git for Windows CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-10T10:32:30.940Z">
-<meta property="article:modified_time" content="2024-01-10T10:32:30.940Z">
+<meta property="article:published_time" content="2024-01-15T13:48:00.857Z">
+<meta property="article:modified_time" content="2024-01-15T13:48:00.857Z">
 <meta property="article:author" content="bingxl">
 <meta name="twitter:card" content="summary">
   
@@ -52,7 +52,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css">
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 
 <body>
   <div id="container">
@@ -101,7 +101,7 @@
         <section id="main"><article id="post-webassembly向导--译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" class="article-date">
-  <time class="dt-published" datetime="2024-01-10T10:32:30.940Z" itemprop="datePublished">2024-01-10</time>
+  <time class="dt-published" datetime="2024-01-15T13:48:00.857Z" itemprop="datePublished">2024-01-15</time>
 </a>
     
   </div>
@@ -149,7 +149,7 @@
 <h2 id="nginx配置-MIME类型"><a href="#nginx配置-MIME类型" class="headerlink" title="nginx配置 MIME类型"></a>nginx配置 MIME类型</h2><p>找到nginx的配置文件所在目录，我的在<code>/etc/nginx/</code>下，里面有个mime.types文件，为了不弄乱排序结构，找到 application&#x2F;v**** 和 application&#x2F;x****的配置项中间加一行 <code>application/wasm   wasm;</code>,保存后重启nginx <code>systemctl restart nginx</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 配置后的一部分内容</span><br><span class="line">..................</span><br><span class="line">application/vnd.google-earth.kmz   kmz;</span><br><span class="line">application/wasm                   wasm;</span><br><span class="line">application/x-7z-compressed        7z;</span><br><span class="line">....................</span><br></pre></td></tr></table></figure>
 <p>使用 <code>curl -I url</code>查看服务器响应的头部信息。</p>
-<h2 id="c-x2F-c-中-export-函数"><a href="#c-x2F-c-中-export-函数" class="headerlink" title="c&#x2F;c++ 中 export 函数"></a>c&#x2F;c++ 中 export 函数</h2><p>c&#x2F;c++ 中默认运行 main 函数, 其余函数会被忽略, 素以需要做一些处理, 使用 emscript 提供的 EMSCRIPTEN_KEEP_ALIVE 修饰 如下</p>
+<h2 id="c-c-中-export-函数"><a href="#c-c-中-export-函数" class="headerlink" title="c&#x2F;c++ 中 export 函数"></a>c&#x2F;c++ 中 export 函数</h2><p>c&#x2F;c++ 中默认运行 main 函数, 其余函数会被忽略, 素以需要做一些处理, 使用 emscript 提供的 EMSCRIPTEN_KEEP_ALIVE 修饰 如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;emscripten/emscripten.h&gt;</span><br><span class="line"></span><br><span class="line">int EMSCRIPTEN_KEEPALIVE myname() &#123;</span><br><span class="line">  printf(&quot;hello myname&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用emcc编译时添加编译条件 <code>-s &quot;EXTRA_EXPORTED_RUNTIME_METHODS=[&#39;ccall&#39;]&quot;</code> 导出 <code>Module.ccall</code> </p>
 <p>js 中使用 <code>Module.ccall(myname, returnType, argumentTypes, arguments)</code> 调用 webassebmly 导出的函数</p>
@@ -157,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" data-id="clr7n6ici0020ivqd93dde8j6" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" data-id="clrezd1qg002xs6qe8d28eep7" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
