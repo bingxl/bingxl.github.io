@@ -52,4 +52,5 @@ jobs:
           port: ${{ secrets.PORT }}
           source: "./public/*"
           target: "/var/www/bingxl.github.io/"
+          strip_components: 1
           rm: true
