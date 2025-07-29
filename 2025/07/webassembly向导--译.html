@@ -15,15 +15,17 @@
 <!-- End Google Analytics -->
 
   
-  <title>归档: 2025/5 | 稻草人-前端笔记</title>
+  <title>稻草人-前端笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="关于前端、关于生活">
-<meta property="og:type" content="website">
+  <meta name="description" content="webAssembly 开发者指导本页面提供一步一步的操作将一个简单的程序编译成webassembly 前提要求为了编译成webAssembly，需要提前安装一些工具：  Git。在Linux和OSX下已自带了Git，在Windows下需要安装 Git for Windows CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载">
+<meta property="og:type" content="article">
 <meta property="og:title" content="稻草人-前端笔记">
-<meta property="og:url" content="http://bingxl.com/archives/2025/05/index.html">
+<meta property="og:url" content="http://bingxl.com/2025/07/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">
 <meta property="og:site_name" content="稻草人-前端笔记">
-<meta property="og:description" content="关于前端、关于生活">
+<meta property="og:description" content="webAssembly 开发者指导本页面提供一步一步的操作将一个简单的程序编译成webassembly 前提要求为了编译成webAssembly，需要提前安装一些工具：  Git。在Linux和OSX下已自带了Git，在Windows下需要安装 Git for Windows CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-29T02:13:42.598Z">
+<meta property="article:modified_time" content="2025-07-29T02:13:42.598Z">
 <meta property="article:author" content="bingxl">
 <meta name="twitter:card" content="summary">
   
@@ -94,33 +96,85 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2025" class="archive-year">2025</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2025/05/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" class="archive-article-date">
-  <time class="dt-published" datetime="2025-05-07T23:32:40.603Z" itemprop="datePublished">5月 7</time>
+        <section id="main"><article id="post-webassembly向导--译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" class="article-date">
+  <time class="dt-published" datetime="2025-07-29T02:13:42.598Z" itemprop="datePublished">2025-07-29</time>
 </a>
-      
-    </header>
+    
   </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <!--
+@title webAssembly 环境搭建
+@author bingxl
+@emaill scarecrowlxb@qq.com 
+ -->
+<h1 id="webAssembly-开发者指导"><a href="#webAssembly-开发者指导" class="headerlink" title="webAssembly 开发者指导"></a>webAssembly 开发者指导</h1><p>本页面提供一步一步的操作将一个简单的程序编译成webassembly</p>
+<h2 id="前提要求"><a href="#前提要求" class="headerlink" title="前提要求"></a>前提要求</h2><p>为了编译成webAssembly，需要提前安装一些工具：</p>
+<ul>
+<li>Git。在Linux和OSX下已自带了Git，在Windows下需要安装 <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">Git for Windows</a></li>
+<li>CMake。在Linux和OSX下可以使用像apt-get 或 brew 这样的包管理工具来安装，在Windows下下载<a target="_blank" rel="noopener" href="https://cmake.org/download">CMake installer</a>;</li>
+<li>编译工具。 在linux下安装<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/154402/install-gcc-on-ubuntu-12-04-lts">GCC</a>，在OSX下安装<a target="_blank" rel="noopener" href="https://itunes.apple.com/us/app/xcode/id497799835">Xcode</a>。在Windows下安装 <a href="://www.visualstudio.com/downloads/">Visual Studio 2015 Community with Update 3</a> 或更新的版本;</li>
+<li>Python2.7.x。在Linux和OSX下大部分都内置了Python2.7版本，没有的需要安装，Windows下需要自动下载安装；<span id="more"></span>
+安装完后，确保git,cmake,python可访问（否则手动添加环境变量）；从技术上讲,如果使用提前编译好的工具链，那么CMake和编译工具不是必须的，只是开发选项可能受到一点限制。</li>
+</ul>
+<h2 id="下载或编译工具链"><a href="#下载或编译工具链" class="headerlink" title="下载或编译工具链"></a>下载或编译工具链</h2><p>在GitHub行容易获得一个提前编译好的工具链，用以将c&#x2F;c++编译d为webAssembly</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/juj/emsdk.git</span><br><span class="line">$ cd emsdk</span><br><span class="line">$ ./emsdk install latest</span><br><span class="line">$ ./emsdk activate latest</span><br></pre></td></tr></table></figure>
+<p>如果你在Linux发布版本的操作系统里无法获得预编译的Emscripten 工具链，或者你想从源码构建所有工具链，Emscripten SDK 也能用来构建。它的操作步骤如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/juj/emsdk.git</span><br><span class="line">$ cd emsdk</span><br><span class="line">$ ./emsdk install --build=Release sdk-incoming-64bit binaryen-master-64bit</span><br><span class="line">$ ./emsdk activate --build=Release sdk-incoming-64bit binaryen-master-64bit</span><br></pre></td></tr></table></figure>
+<p>经过h这些步骤后，安装已经完成了。在下载完预编译工具链或者你自己构建完成后，将Emscripten编译环境添加到当前shell环境中，输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ./emsdk_env.sh --build=Release</span><br></pre></td></tr></table></figure>
+<p>此条命令添加相关的环境变量和目录到PATH中，使得当前终端很容易的找到编译工具。</p>
+<p>在Windows下 把上面所有命令中的 <code>./emsdk</code>替换为 <code>emsdk</code>， <code>source ./emsdk_env.sh</code>替换为 <code>emsdk_env</code>。</p>
+<p>如果你是使用 Visual Studio 2017 ，在<code>emsdk install</code>命令后面添加一个参数 <code>--vs2017</code></p>
+<h2 id="编译执行一个简单的程序"><a href="#编译执行一个简单的程序" class="headerlink" title="编译执行一个简单的程序"></a>编译执行一个简单的程序</h2><p>现在有一个完整的工具链来编译简单的程序为webAssembly。但是下面还有几个说明：</p>
+<ul>
+<li>需要使用<code>emcc</code>的 <code>-s WASM=1</code>选项。否则<code>emcc</code>默认编译为asm.js;</li>
+<li>如果要使Emscripten生成除了Wasm二进制文件和JavaScript包装文件外的可执行HTML文件，需要指定一个以 <code>.html</code>结尾的输出文件；</li>
+<li>最后，不能在浏览器里通过file:&#x2F;&#x2F;协议简单的打开HTML文件，因为在<code>file</code>协议里跨源请求时不被允许的，需要通过一个http服务来打开文件。</li>
+</ul>
+<p>下面的命令创建和编译一个简单的“hello world”程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir hello</span><br><span class="line">$ cd hello</span><br><span class="line">$ touch hello.c</span><br><span class="line">$ echo &#x27;#include &lt;stdio.h&gt; int main(int argc, char ** argv) &#123;  printf(&quot;Hello world!&quot;);&#125;&#x27; &gt; hello.c</span><br><span class="line">$ emcc hello.c -s WASM=1 -o hello.html</span><br></pre></td></tr></table></figure>
+<p>可以g通过Emscript SDK的 <code>emrun</code>来提供一个http服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ emrun --no_browser --port 8000 ./</span><br></pre></td></tr></table></figure>
+<p>当http服务运行起来，可以从浏览器打开,<a target="_blank" rel="noopener" href="http://localhost:8000/hello.html">地址为: http://localhost:8000/hello.html</a>，如果你在Emscripten 控制台看到“Hello world!”,那么恭喜你已经成功的编译webAssembly!</p>
+<h2 id="一点思考"><a href="#一点思考" class="headerlink" title="一点思考"></a>一点思考</h2><p>对于办公来说，首选的时Windows或OSX，但OSX太贵了，所以Windows用的还是挺多的，我遇到好多的工具在Windows下的使用都依赖Visual Studio，但是Visual Studio实在是太笨重了，我特别厌恶，之后遇到了WSL 即Windows子系统，在里面可以安装好几种Linux系统，用起来特别流畅，比虚拟机好用多了，我觉得这个微软的这个功能特别赞。</p>
+<p>WebAssembly文件加载常会碰都WebAssembly因为MIME 不是 wasm类型而无法编译问题，可以查看自己的服务器软件里有么有 Application&#x2F;wasm类型。</p>
+<h2 id="nginx配置-MIME类型"><a href="#nginx配置-MIME类型" class="headerlink" title="nginx配置 MIME类型"></a>nginx配置 MIME类型</h2><p>找到nginx的配置文件所在目录，我的在<code>/etc/nginx/</code>下，里面有个mime.types文件，为了不弄乱排序结构，找到 application&#x2F;v**** 和 application&#x2F;x****的配置项中间加一行 <code>application/wasm   wasm;</code>,保存后重启nginx <code>systemctl restart nginx</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 配置后的一部分内容</span><br><span class="line">..................</span><br><span class="line">application/vnd.google-earth.kmz   kmz;</span><br><span class="line">application/wasm                   wasm;</span><br><span class="line">application/x-7z-compressed        7z;</span><br><span class="line">....................</span><br></pre></td></tr></table></figure>
+<p>使用 <code>curl -I url</code>查看服务器响应的头部信息。</p>
+<h2 id="c-c-中-export-函数"><a href="#c-c-中-export-函数" class="headerlink" title="c&#x2F;c++ 中 export 函数"></a>c&#x2F;c++ 中 export 函数</h2><p>c&#x2F;c++ 中默认运行 main 函数, 其余函数会被忽略, 素以需要做一些处理, 使用 emscript 提供的 EMSCRIPTEN_KEEP_ALIVE 修饰 如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;emscripten/emscripten.h&gt;</span><br><span class="line"></span><br><span class="line">int EMSCRIPTEN_KEEPALIVE myname() &#123;</span><br><span class="line">  printf(&quot;hello myname&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用emcc编译时添加编译条件 <code>-s &quot;EXTRA_EXPORTED_RUNTIME_METHODS=[&#39;ccall&#39;]&quot;</code> 导出 <code>Module.ccall</code> </p>
+<p>js 中使用 <code>Module.ccall(myname, returnType, argumentTypes, arguments)</code> 调用 webassebmly 导出的函数</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bingxl.com/2025/07/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html" data-id="cmdnwkyde0028px9lhlqu4q6u" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/termux.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">termux</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
@@ -160,7 +214,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">五月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
     </div>
   </div>
 
@@ -173,7 +227,7 @@
       <ul>
         
           <li>
-            <a href="/2025/05/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
+            <a href="/2025/07/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
           </li>
         
           <li>
