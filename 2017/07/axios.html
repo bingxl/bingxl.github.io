@@ -25,11 +25,11 @@
 <meta property="og:description" content="特点&#x2F;功能 make XMLHttpRequests from browser 在浏览器环境里发送 AJAX 请求 make http requests from nodejs 在 nodejs 里发送 http 请求 supports the promise API 支持 promise(es6 语法) intercept request and response 拦截请求和响应 tr">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-07-23T17:42:09.000Z">
-<meta property="article:modified_time" content="2025-07-29T02:13:42.596Z">
+<meta property="article:modified_time" content="2025-11-18T01:58:16.720Z">
 <meta property="article:author" content="bingxl">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="js">
 <meta property="article:tag" content="axios">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="稻草人-前端笔记" type="application/atom+xml">
@@ -53,7 +53,7 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body>
   <div id="container">
@@ -129,8 +129,10 @@
 <li>transform request and response data 转换请求和响应数据</li>
 <li>cancel requests 取消请求</li>
 <li>automatic transforms for JSON data 自动转换 JSON 数据</li>
-<li>client side support for protecting against xsrf 客户端支持防止 CSRF&#x2F;XSRF<span id="more"></span></li>
+<li>client side support for protecting against xsrf 客户端支持防止 CSRF&#x2F;XSRF</li>
 </ul>
+<span id="more"></span>
+
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save-dev</span><br><span class="line">or</span><br><span class="line">bower install axios</span><br></pre></td></tr></table></figure>
 
 <h1 id="exmple"><a href="#exmple" class="headerlink" title="exmple"></a>exmple</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    <span class="attr">methods</span>: <span class="string">&#x27;post&#x27;</span>,<span class="comment">//get,post,put,delete,patch</span></span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">axios</span>(consifg).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">axios.<span class="title function_">get</span>(url[,config]).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">axios.<span class="title function_">post</span>(url[,data[,config]]).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并发请求</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">get1</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> axios.<span class="title function_">get</span>(url);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">get2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> axios.<span class="title function_">get</span>(url);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">axios.<span class="title function_">all</span>([<span class="title function_">get1</span>(), <span class="title function_">get2</span>()]).<span class="title function_">then</span>(axios.<span class="title function_">spread</span>(</span><br><span class="line">    <span class="function">(<span class="params">g1, g2</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(g1, g2);</span><br><span class="line">    &#125;</span><br><span class="line">))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -139,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/axios.html" data-id="cmdnwkyck000apx9lalpz3jye" data-title="axios" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/axios.html" data-id="cuidinAZMJ8rvPxmKYfepvSrJ" data-title="axios" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -209,7 +211,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
     </div>
   </div>
 
@@ -222,7 +224,7 @@
       <ul>
         
           <li>
-            <a href="/2025/07/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
+            <a href="/2025/11/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
           </li>
         
           <li>

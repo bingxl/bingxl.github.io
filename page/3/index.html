@@ -48,7 +48,7 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body>
   <div id="container">
@@ -128,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/08/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" data-id="cmdnwkydh002jpx9lhp81439h" data-title="正则表达式" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/08/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html" data-id="cuidMKV2976B92i4oEkfETBQX" data-title="正则表达式" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -171,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/08/%E5%89%8D%E7%AB%AF%E5%88%B7%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91.html" data-id="cmdnwkydf002dpx9lb46k359q" data-title="前端刷题遇到的坑" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/08/%E5%89%8D%E7%AB%AF%E5%88%B7%E9%A2%98%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91.html" data-id="cuid9q2B-_VSIhtKrDWPSVoIz" data-title="前端刷题遇到的坑" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -214,8 +214,10 @@
 <li>创建与读取目录</li>
 <li>查看文件或目录信息</li>
 <li>其它操作</li>
-<li>文件流<!--more  --></li>
+<li>文件流</li>
 </ul>
+<!--more  -->
+
 <h2 id="文件操作的同步与异步"><a href="#文件操作的同步与异步" class="headerlink" title="文件操作的同步与异步"></a>文件操作的同步与异步</h2><p>所有文件、目录的创建、读取、删除操作都有同步和异步两种方式，同步方式方法名后有 Sync</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line">fs.<span class="title function_">readFile</span>(__dirname + <span class="string">&#x27;/index.md&#x27;</span>,(err,stdout,stderr)&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(stderr);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;异步读取文件&#x27;</span>, stdout);</span><br><span class="line">&#125;; <span class="comment">//异步方式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = fs.<span class="title function_">readFileSync</span>(__dirname + <span class="string">&#x27;index.md&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;同步方式读取文件&#x27;</span>, data);</span><br></pre></td></tr></table></figure>
 
@@ -265,7 +267,7 @@
 <h3 id="修改文件访问时间和修改时间"><a href="#修改文件访问时间和修改时间" class="headerlink" title="修改文件访问时间和修改时间"></a>修改文件访问时间和修改时间</h3><p>fs.utimes(path, atime, mtime, callback(err))<br>使用 open 打开的文件时间修改使用：fs.futimes(fd, atime, mtime, callback)</p>
 <h3 id="修改文件或目录的读写权限"><a href="#修改文件或目录的读写权限" class="headerlink" title="修改文件或目录的读写权限"></a>修改文件或目录的读写权限</h3><p>fs.chmod(path, mode, callback(err))<br>fs.fchomd(fd, mode, callback) 使用 open 打开的文件</p>
 <h2 id="其他操作-P118"><a href="#其他操作-P118" class="headerlink" title="其他操作 P118"></a>其他操作 P118</h2><h3 id="移动文件或目录"><a href="#移动文件或目录" class="headerlink" title="移动文件或目录"></a>移动文件或目录</h3><p>fs.rename(oldname, newname, callback(err))</p>
-<h3 id="硬链接操作"><a href="#硬链接操作" class="headerlink" title="硬链接操作"></a>硬链接操作</h3><p>_硬链接_：实际上就是文件名，通过特殊操作可以为文件创造多个文件名即多个硬链接</p>
+<h3 id="硬链接操作"><a href="#硬链接操作" class="headerlink" title="硬链接操作"></a>硬链接操作</h3><p><em>硬链接</em>：实际上就是文件名，通过特殊操作可以为文件创造多个文件名即多个硬链接</p>
 <p>创建硬链接</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.link(srcpath, dstpath,callback(err))</span><br><span class="line">srcpath为需要创建硬链接的文件的路径及文件名，dstpath与srcpath必须在同一卷中</span><br><span class="line"></span><br><span class="line">linkSync同步版</span><br></pre></td></tr></table></figure>
 
@@ -287,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/08/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97.html" data-id="cmdnwkyd6001kpx9l9rcahco2" data-title="node文件模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/08/node%E6%96%87%E4%BB%B6%E6%A8%A1%E5%9D%97.html" data-id="cuidGt7XuSI-P4yD3SWltbAD5" data-title="node文件模块" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -353,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/08/js%E5%AD%97%E7%AC%A6%E4%B8%B2.html" data-id="cmdnwkycr000opx9l20nugwza" data-title="js字符串" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/08/js%E5%AD%97%E7%AC%A6%E4%B8%B2.html" data-id="cuidI8NwyszOKgnWVZPwc3-Od" data-title="js字符串" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -498,12 +500,12 @@
 <h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ([&lt;&lt;init&gt;&gt;], [&lt;&lt;condition&gt;&gt;], [&lt;&lt;post_iteration&gt;&gt;]) &#123;</span><br><span class="line">    <span class="comment">// &lt;&lt;statement&gt;&gt;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (condition) &#123;</span><br><span class="line">    &lt;&lt;statement&gt;&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    &lt;&lt;statement&gt;&gt;</span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>break 跳出循环，而 continue 结束本次循环，开始下一次循环</p>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数声明：<br><code>function funName(parameter1, parameter2) &#123;function body&#125;</code><br>函数声明会提升，声明后的函数连同实体会被移动到其所在作用域的开始处； 通过 var 定义的变量也会发生提升，但只是定义发生了提升，赋值未提升。调用函数后返回一个值(函数表达式)。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数声明：<br><code>function funName(parameter1, parameter2) {function body}</code><br>函数声明会提升，声明后的函数连同实体会被移动到其所在作用域的开始处； 通过 var 定义的变量也会发生提升，但只是定义发生了提升，赋值未提升。调用函数后返回一个值(函数表达式)。</p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h2><h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><h2 id="变量作用域和闭包"><a href="#变量作用域和闭包" class="headerlink" title="变量作用域和闭包"></a>变量作用域和闭包</h2><h2 id="对象和构造函数"><a href="#对象和构造函数" class="headerlink" title="对象和构造函数"></a>对象和构造函数</h2><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><h2 id="标准库的其他功能"><a href="#标准库的其他功能" class="headerlink" title="标准库的其他功能"></a>标准库的其他功能</h2><h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><h3 id="console-系列"><a href="#console-系列" class="headerlink" title="console 系列"></a>console 系列</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/js%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83.html" data-id="cmdnwkyd00010px9lhbtkcwli" data-title="js快速参考" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/js%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83.html" data-id="cuidhRr1uRsrwXWxlNQM7SDcZ" data-title="js快速参考" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -545,7 +547,8 @@
 <li>transform request and response data 转换请求和响应数据</li>
 <li>cancel requests 取消请求</li>
 <li>automatic transforms for JSON data 自动转换 JSON 数据</li>
-<li>client side support for protecting against xsrf 客户端支持防止 CSRF&#x2F;XSRF
+<li>client side support for protecting against xsrf 客户端支持防止 CSRF&#x2F;XSRF</li>
+</ul>
         
           <p class="article-more-link">
             <a href="/2017/07/axios.html#more">Read More</a>
@@ -554,7 +557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/axios.html" data-id="cmdnwkyck000apx9lalpz3jye" data-title="axios" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/axios.html" data-id="cuidinAZMJ8rvPxmKYfepvSrJ" data-title="axios" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -604,7 +607,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/js%E4%B8%AD%E7%9A%84this.html" data-id="cmdnwkycp000ipx9l30v89op4" data-title="js中的this" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/js%E4%B8%AD%E7%9A%84this.html" data-id="cuidBMiAztHWHj1uaUoJ352f_" data-title="js中的this" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -655,7 +658,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/H5%E6%A6%82%E8%BF%B0.html" data-id="cmdnwkycg0005px9l8mnq0z3r" data-title="H5概述" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/H5%E6%A6%82%E8%BF%B0.html" data-id="cuidLtI5KutpKFF9cCLg9Z1KT" data-title="H5概述" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -701,7 +704,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/web%E9%A1%B5%E9%9D%A2%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0%E4%B9%8Bbrowser-sync.html" data-id="cmdnwkydf002apx9lgr7z4cka" data-title="web页面实时刷新之browser-sync" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/web%E9%A1%B5%E9%9D%A2%E5%AE%9E%E6%97%B6%E5%88%B7%E6%96%B0%E4%B9%8Bbrowser-sync.html" data-id="cuidn0MssSZfJQT3crdfNeALo" data-title="web页面实时刷新之browser-sync" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -747,7 +750,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bingxl.com/2017/07/%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9B%AD%E4%BD%BF%E7%94%A8%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1.html" data-id="cmdnwkydg002gpx9l58nw9bzn" data-title="在博客园使用百度统计" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://bingxl.com/2017/07/%E5%9C%A8%E5%8D%9A%E5%AE%A2%E5%9B%AD%E4%BD%BF%E7%94%A8%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1.html" data-id="cuidgN2CtqYNaYAoij7JjcM2U" data-title="在博客园使用百度统计" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -805,7 +808,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">七月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">十一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
     </div>
   </div>
 
@@ -818,7 +821,7 @@
       <ul>
         
           <li>
-            <a href="/2025/07/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
+            <a href="/2025/11/webassembly%E5%90%91%E5%AF%BC--%E8%AF%91.html">(no title)</a>
           </li>
         
           <li>
